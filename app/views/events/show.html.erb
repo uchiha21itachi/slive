@@ -25,14 +25,17 @@
 </p>
 
 <p>
-  <strong> List of participants: </strong>
-  <% @event.users.each do |user| %>
+  <% if @event.presenter == current_user  %>
+    <strong> List of participants: </strong>
+    <% @event.users.each do |user| %>
     <li><%= user.email %></li>
+    <%= link_to "Remove the user", event_remove_user_from_event_path(@event, user), method: :post %>
+    <% end %>
   <% end %>
 </p>
 
 <p>
-  <strong> Presenter: </strong>
+  <strong> Presenter email: </strong>
   <%= @event.presenter.email %>
 </p>
 
