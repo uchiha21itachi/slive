@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :events
   resources :users, only: [:edit , :show, :update, :index]
-
+  post "register", to: "events#register_users"
   root to: 'pages#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
