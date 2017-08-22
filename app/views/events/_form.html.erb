@@ -1,0 +1,8 @@
+<%= simple_form_for [@event] do |f| %>
+  <div class="group"><%= f.input :name %></div>
+  <div class="group"><%= f.input :address %></div>
+  <div class="group"><%= f.input :description %></div>
+  <div class="group"><%= f.input :date %></div>
+  <div class="group"><%= f.input :time %></div>
+  <button> <%= f.submit class: "btn btn-primary" %> </button>
+ <%end  %>
