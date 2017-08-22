@@ -6,19 +6,12 @@ class EventsController < ApplicationController
     @events = Event.where(params[user: current_user])
   end
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 35a237a3723b5025a84a3f26eaa5ae2f3477af5c
   def participated_events
     @events = Event.all
     @your_events = []
     @events.each do |event|
-<<<<<<< HEAD
       participants_events = event.events_users
-=======
-      participants_events = @events.events_users
->>>>>>> 35a237a3723b5025a84a3f26eaa5ae2f3477af5c
       participants_events.each do |participant|
         if participant == current_user
           @your_events << event
