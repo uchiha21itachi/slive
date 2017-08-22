@@ -1,0 +1,24 @@
+.banner {
+  height: 90vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-color: #FFFEFC;
+  h1 {
+    color: #494646;
+    font-weight: bold;
+    font-size: 45px;
+  }
+  p {
+    color: #494646;
+    opacity: .8;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-bottom: 30px;
+  }
+  .btn {
+    padding: 15px 50px;
+  }
+}
