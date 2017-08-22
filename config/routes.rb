@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :events
+
   resources :users, only: [:edit , :show, :update, :index]
+
+  resources :events do
+    post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
+  end
+
+  post "register", to: "events#register_users"
 
   root to: 'pages#home'
 

@@ -3,24 +3,44 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :show, :update, :destroy]
 
   def index
-    @events = Event.where(params[user: current_user])
+    @events = Event.where(user: current_user)
   end
 
 
   def participated_events
-    @events = Event.all
-    @your_events = []
-    @events.each do |event|
-      participants_events = event.events_users
-      participants_events.each do |participant|
-        if participant == current_user
-          @your_events << event
-        end
-      end
+    @events = Event.where(presenter: current_user)
+  end
+
+  def register_users
+    @event = Event.find_by(token: params[:token])
+    if current_user == @event.presenter
+      flash[:notice] = "Your are the Presenter. Welcome to your event "
+      redirect_to event_path(@event)
+    elsif @event.users.include?(current_user)
+      flash[:notice] = "welcome to the event"
+      redirect_to event_path(@event)
+    else
+      @event.users << current_user
+      @event.save
+      flash[:notice] = "welcome to the event. Joined the event successfully"
+      redirect_to event_path(@event)
     end
   end
 
+  def remove_user_from_event
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:id])
+    @event.users.delete(@user)
+    if @event.save
+      flash[:notice] = "Successfully removed the user from list"
+      redirect_to event_path(@event)
+    else
+      flash[:notice] = "Error cant remove the user"
+      redirect_to event_path(@event)
+    end
+  end
   def show
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -34,6 +54,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event)
     else
       render :new
+    end
   end
 
   def edit
@@ -45,6 +66,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event), notice: 'Event was successfully updated.'
     else
       render :edit
+    end
   end
 
   def destroy
@@ -62,6 +84,6 @@ private
     @event = Event.find(params[:id])
   end
 
-  def creat_token
+  def create_token
   end
 end
