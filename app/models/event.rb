@@ -10,4 +10,5 @@ class Event < ApplicationRecord
   has_many :questions
   has_many :livemessages
   has_and_belongs_to_many :users
+  belongs_to :presenter, class_name: User
 end
