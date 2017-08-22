@@ -14,6 +14,7 @@ class User < ApplicationRecord
   :omniauthable, omniauth_providers: [:facebook]
 
   has_and_belongs_to_many :events
+  has_many :questions
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
