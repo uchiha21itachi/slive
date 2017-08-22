@@ -4,22 +4,33 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
+  def questions_by_a_user
+    @user = current_user
+    @questions = @user.questions
+  end
+
 
   def show
    @question = question.find(params[:id])
   end
 
   def new
-    @question = question.new
+    @event = Event.find(params[:event_id])
+    @question = Question.new
   end
 
   def create
-    @question = question.new(question_params)
+    @event = Event.find(params[:event_id])
+    @user = current_user
+    @question = Question.new(question_params)
+    @question.user = @user
+    @question.event = @event
     if @question.save
-      redirect_to question_path(@question)
+      # redirect_to question_path(@question)
     else
       render :new
   end
+end
 
   def edit
     @question = question.find(params[:id])
@@ -32,6 +43,7 @@ class QuestionsController < ApplicationController
     else
       render :edit
   end
+end
 
   def destroy
      @question = question.find(params[:id])
@@ -42,7 +54,7 @@ class QuestionsController < ApplicationController
 private
 
   def question_params
-    params.require(:question).permit(:question, :title, :category, :user_id, :id)
+    params.require(:question).permit(:question, :title, :category)
   end
 
 
