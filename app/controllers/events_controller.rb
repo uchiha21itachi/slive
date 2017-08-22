@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     @events = Event.all
     @your_events = []
     @events.each do |event|
-      participants_events = @events.events_users
+      participants_events = event.events_users
       participants_events.each do |participant|
         if participant == current_user
           @your_events << event
