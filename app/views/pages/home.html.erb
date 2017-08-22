@@ -2,7 +2,10 @@
   <div class="banner-content text-center">
     <h1>Enter the Event !</h1>
     <br>
-    <input type="text" placeholder="Session token">
-    <button>Join</button>
+    <form action="<%= register_path %>" method="post">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" >
+      <input type="text" placeholder="Session token" name="token">
+      <input type="submit" value="Join">
+    </form>
   </div>
 </div>
