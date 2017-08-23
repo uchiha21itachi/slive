@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
-
-  devise_for :users,
+ 
+devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :users, only: [:edit , :show, :update, :index] do
@@ -18,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
+    get "survey", to: "surveys#new", as: "new_survey"
+    post "survey", to: "surveys#create"
+
   end
 
   post "register", to: "events#register_users"

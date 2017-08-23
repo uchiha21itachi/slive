@@ -54,7 +54,7 @@ end
 private
 
   def question_params
-    params.require(:question).permit(:question, :title, :category)
+    params.require(:question).permit(:question, :title, :category, options_attributes: [:choice,:id, :destroy])
   end
 
 

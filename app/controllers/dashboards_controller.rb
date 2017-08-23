@@ -11,6 +11,6 @@ class DashboardsController < ApplicationController
 
   def participated_events
     @user = User.find(params[:user_id])
-    @events = Event.where(user: current_user)
+    @events = @user.events
   end
 end
