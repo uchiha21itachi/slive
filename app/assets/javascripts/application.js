@@ -4,13 +4,13 @@
 //= require cocoon
 //= require_tree .
 
-$('#options').hide();
+// $('#options').hide();
 
-$('#question_category').on('change', function(e) {
-	if($('#question_category').val() === 'survey') {
-		$('#options').show();
-	} else {
-		$('#options').hide();
-	}
-});
+// $('#question_category').on('change', function(e) {
+// 	if($('#question_category').val() === 'survey') {
+// 		$('#options').show();
+// 	} else {
+// 		$('#options').hide();
+// 	}
+// });
 

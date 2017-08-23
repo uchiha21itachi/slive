@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823181201) do
+ActiveRecord::Schema.define(version: 20170823202547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,122 +42,6 @@ ActiveRecord::Schema.define(version: 20170823181201) do
     t.integer "user_id"
     t.index ["event_id"], name: "index_events_users_on_event_id", using: :btree
     t.index ["user_id"], name: "index_events_users_on_user_id", using: :btree
-  end
-
-  create_table "fae_changes", force: :cascade do |t|
-    t.integer  "changeable_id"
-    t.string   "changeable_type"
-    t.integer  "user_id"
-    t.string   "change_type"
-    t.text     "updated_attributes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["changeable_id"], name: "index_fae_changes_on_changeable_id", using: :btree
-    t.index ["changeable_type"], name: "index_fae_changes_on_changeable_type", using: :btree
-    t.index ["user_id"], name: "index_fae_changes_on_user_id", using: :btree
-  end
-
-  create_table "fae_files", force: :cascade do |t|
-    t.string   "name"
-    t.string   "asset"
-    t.string   "fileable_type"
-    t.integer  "fileable_id"
-    t.integer  "file_size"
-    t.integer  "position",      default: 0
-    t.string   "attached_as"
-    t.boolean  "on_stage",      default: true
-    t.boolean  "on_prod",       default: false
-    t.boolean  "required",      default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attached_as"], name: "index_fae_files_on_attached_as", using: :btree
-    t.index ["fileable_type", "fileable_id"], name: "index_fae_files_on_fileable_type_and_fileable_id", using: :btree
-  end
-
-  create_table "fae_images", force: :cascade do |t|
-    t.string   "name"
-    t.string   "asset"
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
-    t.string   "alt"
-    t.string   "caption"
-    t.integer  "position",       default: 0
-    t.string   "attached_as"
-    t.boolean  "on_stage",       default: true
-    t.boolean  "on_prod",        default: false
-    t.integer  "file_size"
-    t.boolean  "required",       default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attached_as"], name: "index_fae_images_on_attached_as", using: :btree
-    t.index ["imageable_type", "imageable_id"], name: "index_fae_images_on_imageable_type_and_imageable_id", using: :btree
-  end
-
-  create_table "fae_options", force: :cascade do |t|
-    t.string   "title"
-    t.string   "time_zone"
-    t.string   "colorway"
-    t.string   "stage_url"
-    t.string   "live_url"
-    t.integer  "singleton_guard"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["singleton_guard"], name: "index_fae_options_on_singleton_guard", unique: true, using: :btree
-  end
-
-  create_table "fae_roles", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "fae_static_pages", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "position",   default: 0
-    t.boolean  "on_stage",   default: true
-    t.boolean  "on_prod",    default: false
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["slug"], name: "index_fae_static_pages_on_slug", using: :btree
-  end
-
-  create_table "fae_text_areas", force: :cascade do |t|
-    t.string   "label"
-    t.text     "content"
-    t.integer  "position",         default: 0
-    t.boolean  "on_stage",         default: true
-    t.boolean  "on_prod",          default: false
-    t.integer  "contentable_id"
-    t.string   "contentable_type"
-    t.string   "attached_as"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attached_as"], name: "index_fae_text_areas_on_attached_as", using: :btree
-    t.index ["contentable_id"], name: "index_fae_text_areas_on_contentable_id", using: :btree
-    t.index ["contentable_type"], name: "index_fae_text_areas_on_contentable_type", using: :btree
-    t.index ["on_prod"], name: "index_fae_text_areas_on_on_prod", using: :btree
-    t.index ["on_stage"], name: "index_fae_text_areas_on_on_stage", using: :btree
-    t.index ["position"], name: "index_fae_text_areas_on_position", using: :btree
-  end
-
-  create_table "fae_text_fields", force: :cascade do |t|
-    t.string   "contentable_type"
-    t.integer  "contentable_id"
-    t.string   "attached_as"
-    t.string   "label"
-    t.string   "content"
-    t.integer  "position",         default: 0
-    t.boolean  "on_stage",         default: true
-    t.boolean  "on_prod",          default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["attached_as"], name: "index_fae_text_fields_on_attached_as", using: :btree
-    t.index ["contentable_type", "contentable_id"], name: "index_fae_text_fields_on_contentable_type_and_contentable_id", using: :btree
-    t.index ["on_prod"], name: "index_fae_text_fields_on_on_prod", using: :btree
-    t.index ["on_stage"], name: "index_fae_text_fields_on_on_stage", using: :btree
-    t.index ["position"], name: "index_fae_text_fields_on_position", using: :btree
   end
 
   create_table "fae_users", force: :cascade do |t|
@@ -203,11 +87,9 @@ ActiveRecord::Schema.define(version: 20170823181201) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.string   "choice"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["question_id"], name: "index_options_on_question_id", using: :btree
+    t.string  "choice"
+    t.integer "survey_id"
+    t.index ["survey_id"], name: "index_options_on_survey_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -220,6 +102,16 @@ ActiveRecord::Schema.define(version: 20170823181201) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_questions_on_event_id", using: :btree
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string   "question"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_surveys_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_surveys_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -252,7 +144,8 @@ ActiveRecord::Schema.define(version: 20170823181201) do
   add_foreign_key "answers", "users"
   add_foreign_key "livemessages", "events"
   add_foreign_key "livemessages", "users"
-  add_foreign_key "options", "questions"
   add_foreign_key "questions", "events"
   add_foreign_key "questions", "users"
+  add_foreign_key "surveys", "events"
+  add_foreign_key "surveys", "users"
 end

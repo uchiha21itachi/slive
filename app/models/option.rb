@@ -1,4 +1,4 @@
 class Option < ApplicationRecord
-	belongs_to :question 
-	validates :question, presence: :true
+	belongs_to :survey
+	
 end
