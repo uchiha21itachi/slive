@@ -1,3 +1,9 @@
+<div class="chat-box">
+
+
+</div>
+
+
 <h1> <%=@event.name%> </h1>
 <p>
   <strong> Address: </strong>
@@ -38,3 +44,30 @@
   <strong> Presenter email: </strong>
   <%= @event.presenter.email %>
 </p>
+
+
+
+<% content_for(:after_js) do %>
+	<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+	
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('10bb9323b98217d7b03c', {
+      cluster: 'us2',
+      encrypted: true
+    });
+
+		var channel = pusher.subscribe('event-<%= @event.id %>');
+	 
+		
+		channel.bind('message', function(data) {
+			$('.chat-box').append("<p>A new user connected: " + data.message + " </p>"); 
+    });
+
+
+  </script>
+
+<% end %>

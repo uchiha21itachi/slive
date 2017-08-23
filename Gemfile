@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '~> 2.3.1'
+
+
+
+
+# Websockets support
+gem 'pusher'
 
 gem 'devise'
 gem 'figaro'

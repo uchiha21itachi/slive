@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :set_event, only: [:edit, :show, :update, :destroy]
-
+	skip_before_action :authenticate_user!, only: [:show]
   def index
     @events = Event.where(user: current_user)
   end
@@ -41,6 +41,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+		Pusher.trigger("event-#{@event.id}", 'message', {
+      message: 'hello world'
+    })
   end
 
   def new
