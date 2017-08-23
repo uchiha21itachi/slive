@@ -5,4 +5,6 @@ class Question < ApplicationRecord
 
   belongs_to :user
   belongs_to :event
-  end
+  has_many :answers
+end
+
