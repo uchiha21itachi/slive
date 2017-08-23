@@ -17,6 +17,10 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+# Web sockets
+gem 'pusher'
+
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
