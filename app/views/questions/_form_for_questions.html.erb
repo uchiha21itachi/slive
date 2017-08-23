@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for @question, url: event_new_question_path(@event), method: :post do |f|  %>
+      <%= f.input :title %>
+      <%= f.input :question%>
+      <%= f.input :category%>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+     </div>
+  </div>
+</div>
