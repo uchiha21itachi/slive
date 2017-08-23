@@ -6,24 +6,23 @@ class EventsController < ApplicationController
     @events = Event.where(user: current_user)
   end
 
-
-  def participated_events
+  def created_events
     @events = Event.where(presenter: current_user)
   end
 
   def register_users
     @event = Event.find_by(token: params[:token])
     if current_user == @event.presenter
-      flash[:notice] = "Your are the Presenter. Welcome to your event "
-      redirect_to event_path(@event)
+      flash[:notice] = "Your are presenting. Welcome to your event "
+      redirect_to event_live_index_path(@event)
     elsif @event.users.include?(current_user)
       flash[:notice] = "welcome to the event"
-      redirect_to event_path(@event)
+      redirect_to event_live_index_path(@event)
     else
       @event.users << current_user
       @event.save
       flash[:notice] = "welcome to the event. Joined the event successfully"
-      redirect_to event_path(@event)
+      redirect_to event_live_index_path(@event)
     end
   end
 
@@ -39,6 +38,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event)
     end
   end
+
   def show
     @event = Event.find(params[:id])
   end
@@ -49,7 +49,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.user = current_user
+    @event.token = create_token
+    @event.presenter = current_user
     if @event.save
       redirect_to event_path(@event)
     else
@@ -85,5 +86,6 @@ private
   end
 
   def create_token
+    @token = (0..8).map { ('a'..'z').to_a[rand(26)] }.join
   end
 end
