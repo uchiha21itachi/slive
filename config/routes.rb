@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+  end
+  # mount Fae below your admin namespec
+  mount Fae::Engine => '/admin'
+
+
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
