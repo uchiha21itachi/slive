@@ -7,8 +7,10 @@
     </div>
   <div class="row">
     <div class="description">
-      <p>Birthday: <%= @user.birth_date %> </p>
-      <p>Occupation: <%= @user.occupation %> </p>
+      <p><strong> Birthday:  </strong> <%= @user.birth_date %> </p>
+      <p><strong> Occupation:  </strong>  <%= @user.occupation %> </p>
+      <p><strong> Email:  </strong> <%= @user.email %> </p>
+      <p><strong> Phone Number:  </strong> <%= @user.phone_number %> </p>
     </div>
   </div>
  <%= link_to "edit", edit_user_path %>

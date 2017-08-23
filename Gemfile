@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
 
+
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
@@ -8,6 +9,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.5'
 gem 'redis'
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -20,6 +22,8 @@ gem 'uglifier'
 # Web sockets
 gem 'pusher'
 
+# custom
+gem "cocoon"
 
 group :development, :test do
   gem 'pry-byebug'
@@ -30,5 +34,7 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Gemfile
+# Gempersonalfile
 gem 'omniauth-facebook'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'

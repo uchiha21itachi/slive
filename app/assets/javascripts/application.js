@@ -1,4 +1,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require_tree .
+//= require ./cable
+//= require ./google_maps_autocomplete
+//= require cocoon
+
+
+// $('#options').hide();
+
+// $('#question_category').on('change', function(e) {
+// 	if($('#question_category').val() === 'survey') {
+// 		$('#options').show();
+// 	} else {
+// 		$('#options').hide();
+// 	}
+// });
