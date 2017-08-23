@@ -1,0 +1,6 @@
+<h1>Welcome to the event </h1>
+  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
+<h3><%= link_to @event.name, event_path(@event) %></h3>
+
+
+

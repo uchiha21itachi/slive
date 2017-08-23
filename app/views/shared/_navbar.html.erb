@@ -12,8 +12,9 @@
       <!-- Links when logged in -->
       <!-- <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %> -->
-      <%= link_to "Dashboard", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to "Appname(home)", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Create Event", new_event_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard",  user_dashboards_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
