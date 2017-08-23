@@ -26,5 +26,7 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Gemfile
+# Gempersonalfile
 gem 'omniauth-facebook'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'

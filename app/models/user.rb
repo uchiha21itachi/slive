@@ -20,7 +20,7 @@ class User < ApplicationRecord
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email)
-    user_params[:full_name] = "#{:first_name} + " " + #{:last_name}"
+    user_params[:full_name] = "#{auth.info.first_name} #{auth.info.last_name}"
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
