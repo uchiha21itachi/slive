@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
+
  def index
     @users = User.all
   end
 
   def show
     @user = current_user
-
   end
 
   def edit
   @user = current_user
-
   end
 
   def update
@@ -23,7 +22,6 @@ class UsersController < ApplicationController
 end
 
   def destroy
-
   end
 
 private

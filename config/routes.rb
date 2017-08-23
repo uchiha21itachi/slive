@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :users, only: [:edit , :show, :update, :index]
-
+  resources :users, only: [:edit , :show, :update, :index] do
+    resources :dashboards, only: [:index]
+    get "created_events", to: "dashboards#created_events", as: "created_events"
+    get "participated_events", to: "dashboards#participated_events", as: "participated_events"
+  end
   resources :events do
     resources :live, only: [:index]
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
