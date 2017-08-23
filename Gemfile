@@ -19,7 +19,7 @@ gem 'simple_form'
 gem 'uglifier'
 
 # custom
-gem 'fae-rails'
+
 
 group :development, :test do
   gem 'pry-byebug'
