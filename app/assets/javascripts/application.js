@@ -1,8 +1,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require ./cable
+//= require ./google_maps_autocomplete
 //= require cocoon
-//= require_tree .
+
 
 // $('#options').hide();
 
@@ -13,4 +15,3 @@
 // 		$('#options').hide();
 // 	}
 // });
-
