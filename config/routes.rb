@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'livemessages/new'
 
   ActiveAdmin.routes(self)
   devise_for :users,
@@ -17,8 +16,8 @@ Rails.application.routes.draw do
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
 
-    get "livemessage", to: "livemessage#new", as: "new_livemessage"
-    post "livemessage", to: "livemessage#create"
+    post "livemessage", to: "livemessages#create"
+    resources :livemessages, only: [:index]
 
     get "survey", to: "surveys#new", as: "new_survey"
     post "survey", to: "surveys#create"

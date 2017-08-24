@@ -14,6 +14,13 @@ class LivemessagesController < ApplicationController
     end
   end
 
+  # def index
+  #   # @event = Event.find(params[:event_id])
+  #   @livemessage = @event.livemessages
+  #   Pusher.trigger("event-#{@event.token}", 'livemessage', {
+  #     livemessages:  "#{@livemessages}"
+  #     })
+  # end
   private
 
   def params_livemessage

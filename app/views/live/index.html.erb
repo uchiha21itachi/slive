@@ -4,6 +4,10 @@
 
 </div>
 
+<div class="chat">
+
+
+</div>
 
 
 <div>
@@ -14,6 +18,10 @@
 
 <div>
   <%= link_to "Make a survey", event_new_survey_path(@event) %>
+</div>
+
+<div>
+  <%= render 'livemessages/new' %>
 </div>
 
 
@@ -34,12 +42,16 @@
 
     channel.bind('message', function(data) {
       $('.chat-join').append("<p>" + "<%=current_user.email%>" + " connected: " + data.message + " </p>");
-
-      $('.send-btn').on('click', function(event){
-        var chat = $('#chat').val()
-        $('.chat').append("<p>"+ chat +"</p>" )
-      })
     });
+
+    channel.bind('livemessage', function(data) {
+        // var msg_array = JSON.parse(data.livemessages);
+        // var user_name = JSON.parse(data.users_id);
+
+        for (i=0; i<data.livemessages.length; i++){
+          $('.chat').append("<p>"+data.user[i]+":- "+ data.livemessages[i]  +"</p>" );
+        }
+      });
 
 
 
