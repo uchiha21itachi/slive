@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
 
+
     get "livemessage", to: "livemessage#new", as: "new_livemessage"
     post "livemessage", to: "livemessage#create"
 
@@ -28,7 +29,14 @@ Rails.application.routes.draw do
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
 
+
+
+
+  resources :questions, only: [] do
+    resources :answers, only: [:new, :create, :edit, :update]
+    
   end
+    
 
 
   post "register", to: "events#register_users"
