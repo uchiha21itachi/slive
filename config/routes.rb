@@ -14,14 +14,17 @@ Rails.application.routes.draw do
     resources :live, only: [:index]
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
+
+    get "survey", to: "surveys#new", as: "new_survey"
+    post "survey", to: "surveys#create"
+    get "survey/:id", to: "surveys#show"
   end
 
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
-    get "survey", to: "surveys#new", as: "new_survey"
-    post "survey", to: "surveys#create"
-
+    
   end
+    
 
   post "register", to: "events#register_users"
   root to: 'pages#home'
