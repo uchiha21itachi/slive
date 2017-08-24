@@ -1,52 +1,31 @@
 <div class="chat-join">
-
-
-
-</div>
-
-
-
-<div>
-  <h1>Welcome to the event </h1>
-  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-  <h3><%= link_to @event.name, event_path(@event) %></h3>
 </div>
 
 <div>
-  <%= link_to "Make a survey", event_new_survey_path(@event) %>
+   <h1>Welcome to the event </h1>
+   <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
+   <h3><%= link_to @event.name, event_path(@event) %></h3>
 </div>
 
+<div>
+   <%= link_to "Make a survey", new_event_survey_path(@event) %>
+</div>
 
-
-<% content_for(:after_js) do %>
-  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script>
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('1980dcfefbb9558eb6ee', {
-    cluster: 'ap2',
-    encrypted: true
-    });
-
-
-    var channel = pusher.subscribe('event-<%= @event.token %>');
-
-    channel.bind('message', function(data) {
-      $('.chat-join').append("<p>" + "<%=current_user.email%>" + " connected: " + data.message + " </p>");
-
-      $('.send-btn').on('click', function(event){
-        var chat = $('#chat').val()
-        $('.chat').append("<p>"+ chat +"</p>" )
-      })
-    });
-
-
-<%= render "surveys/show_survey", survey: @event.surveys.last %>
-
-
-
-
-  </script>
+<% if @event.surveys.any? %>
+   <% @event.surveys.each do |survey|  %>
+      <%= render "surveys/show_survey", event: @event, survey:survey, vote: Vote.new %>
+      <% if @survey_ids.include?(survey.id) %>
+      <br>
+	   <h4>You selected <%= @votes.find{ |v| v.survey_id == survey.id }.option.choice %></h4> .
+	  <br>
+   <% end %>
 <% end %>
+<% end %>
+
+
+
+
+
+
+
 
