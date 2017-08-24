@@ -2,7 +2,11 @@
   <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
 <h3><%= link_to @event.name, event_path(@event) %></h3>
 
+<%= render "surveys/show_survey", survey: @event.surveys.last %>
 
 
 <%= link_to "Make a survey", event_new_survey_path(@event) %>
+
+
+
 
