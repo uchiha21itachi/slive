@@ -19,6 +19,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+# Web sockets
+gem 'pusher'
+
 # custom
 gem "cocoon"
 
