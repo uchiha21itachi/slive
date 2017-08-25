@@ -19,21 +19,22 @@ Rails.application.routes.draw do
 
 
     get "livemessage", to: "livemessage#new", as: "new_livemessage"
-    post "livemessage", to: "livemessage#create"
-
-    get "survey", to: "surveys#new", as: "new_survey"
-    post "survey", to: "surveys#create"
-    get "survey/:id", to: "surveys#show"
+     post "livemessage", to: "livemessage#create"
+    
+    resources :surveys, only: [:index, :show, :new, :create] do
+      resources :votes, only: [:index, :show, :new, :create]
+      
+    end 
   end
 
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
-
+  end
 
 
 
   resources :questions, only: [] do
-    resources :answers, only: [:new, :create, :edit, :update]
+  resources :answers, only: [:new, :create, :edit, :update]
     
   end
     

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for @survey, url: event_survey_path, method: :post do |f|  %>
+      <%= simple_form_for @survey, url: event_surveys_path, method: :post do |f|  %>
      
         <%= f.input :question %>
         <%#= f.input :category, as: :select, collection: %w(survey survey) %>
