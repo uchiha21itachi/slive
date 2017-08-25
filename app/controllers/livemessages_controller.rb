@@ -1,4 +1,4 @@
-# class LivemessagesController < ApplicationController
+ class LivemessagesController < ApplicationController
 
 
   def create
@@ -6,12 +6,12 @@
     @livemessage = Livemessage.new(params_livemessage)
     @livemessage.user = current_user
     @livemessage.event = @event
-    if @livemessage.save
-      flash[:notice] = "Message sent "
+    if @livemessage.save!
+      flash[:notice] = "Message sent"
 
       Pusher.trigger("event-#{@event.token}", 'livemessage', {
-      message: @livemessage.description,
-      user: @livemessage.user.email
+				message: @livemessage.description,
+				user: @livemessage.user.email
       })
       redirect_to event_live_index_path(@event)
     else
@@ -21,7 +21,7 @@
   private
 
 
-#   def params_livemessage
-#     params.require(:livemessage).permit(:description)
-#   end
-# end
+   def params_livemessage
+     params.require(:livemessage).permit(:description)
+   end
+ end
