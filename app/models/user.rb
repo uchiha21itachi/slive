@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :participated_events, class_name: Event, through: :events, source: :users
 
   has_many :questions
+  has_many :votes
+  has_many :surveys
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)

@@ -19,8 +19,17 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+# Web sockets
+gem 'pusher'
+
+#Bootstrap-sass-tools
+gem 'bourbon'
+
 # custom
 gem "cocoon"
+
+# survey-charts
+gem "chartkick"
 
 group :development, :test do
   gem 'pry-byebug'
@@ -35,3 +44,8 @@ end
 gem 'omniauth-facebook'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'docsplit'
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
