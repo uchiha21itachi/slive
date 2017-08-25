@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require chartkick
 //= require ./cable
 //= require ./google_maps_autocomplete
 //= require cocoon

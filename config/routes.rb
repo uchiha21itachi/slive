@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   ActiveAdmin.routes(self)
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -14,15 +15,31 @@ Rails.application.routes.draw do
     resources :live, only: [:index]
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
+
     resources :presentations
+
+
+    post "livemessage", to: "livemessages#create"
+    resources :livemessages, only: [:index]
+    
+    resources :surveys, only: [:index, :show, :new, :create] do
+      resources :votes, only: [:index, :show, :new, :create]
+      
+    end 
+
   end
 
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
-    get "survey", to: "surveys#new", as: "new_survey"
-    post "survey", to: "surveys#create"
-
   end
+
+
+
+  resources :questions, only: [] do
+    resources :answers, only: [:new, :create, :edit, :update]
+  end
+
+
 
   post "register", to: "events#register_users"
   root to: 'pages#home'
