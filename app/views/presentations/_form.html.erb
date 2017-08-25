@@ -1,0 +1,6 @@
+<%= simple_form_for([@event, @presentation]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :pdf_file %>
+  <%= f.input :pdf_file_cache, as: :hidden %>
+  <%= f.submit %>
+<% end %>

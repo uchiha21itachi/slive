@@ -29,7 +29,7 @@
     <strong> List of participants: </strong>
     <% @event.users.each do |user| %>
     <li><%= user.email %></li>
-    <%= link_to "Remove the user", event_remove_user_from_event_path(@event, user), method: :post %>
+    <%= link_to "Remove the participant", event_remove_user_from_event_path(@event, user), method: :post %>
     <% end %>
   <% end %>
 </p>
@@ -40,6 +40,5 @@
 </p>
 
 
-<%= link_to "Make a survey", new_event_survey_path(@event) %>
-
+<%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
 

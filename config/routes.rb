@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
 
+    resources :presentations
+
+
     post "livemessage", to: "livemessages#create"
     resources :livemessages, only: [:index]
     
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
       resources :votes, only: [:index, :show, :new, :create]
       
     end 
+
   end
 
   resources :questions, only: [] do
@@ -40,6 +44,11 @@ Rails.application.routes.draw do
   post "register", to: "events#register_users"
   root to: 'pages#home'
 
-
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
