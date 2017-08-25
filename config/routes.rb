@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     
     resources :surveys, only: [:index, :show, :new, :create] do
       resources :votes, only: [:index, :show, :new, :create]
-      
     end 
 
   end
@@ -32,14 +31,6 @@ Rails.application.routes.draw do
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
   end
-
-
-
-  resources :questions, only: [] do
-    resources :answers, only: [:new, :create, :edit, :update]
-  end
-
-
 
   post "register", to: "events#register_users"
   root to: 'pages#home'

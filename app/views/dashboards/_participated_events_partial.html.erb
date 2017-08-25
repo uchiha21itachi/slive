@@ -1,0 +1,50 @@
+
+
+<% events.each do |event| %>
+<h1> <%=event.name%> </h1>
+<p>
+  <strong> Address: </strong>
+  <%= event.address %>
+</p>
+
+<p>
+  <strong> Description: </strong>
+  <%= event.description %>
+</p>
+
+<p>
+  <strong> Date of event: </strong>
+  <%= event.date %>
+</p>
+
+<p>
+  <strong> Time: </strong>
+  <%= event.time %>
+</p>
+
+<p>
+  <strong> Token: </strong>
+  <%= event.token %>
+</p>
+
+<p>
+  <% if event.presenter == current_user  %>
+    <strong> List of participants: </strong>
+    <% event.users.each do |user| %>
+    <li><%= user.email %></li>
+    <%= link_to "Remove the user", event_remove_user_from_event_path(@event, user), method: :post %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong> Presenter email: </strong>
+  <%= event.presenter.email %>
+</p>
+
+
+<%= link_to "Make a survey", event_new_survey_path(event) %>
+
+<% end %>
+
+

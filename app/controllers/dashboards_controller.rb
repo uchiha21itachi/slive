@@ -1,7 +1,10 @@
 class DashboardsController < ApplicationController
 
   def index
-    User.find(params[:user_id])
+    @user = User.find(params[:user_id])
+    @created_events = Event.where(presenter: current_user)
+    @events = @user.events
+    @event = Event.new
   end
 
   def created_events
