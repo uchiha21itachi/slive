@@ -47,11 +47,11 @@
   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
   <script>
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    //Pusher.logToConsole = true;
 
     var pusher = new Pusher('1980dcfefbb9558eb6ee', {
-    cluster: 'ap2',
-    encrypted: true
+			cluster: 'ap2',
+			encrypted: true
     });
 
     pusher.connection.bind('connected', function() {
@@ -68,9 +68,10 @@
     channel.bind('livemessage', function(data) {
         // var msg_array = JSON.parse(data.livemessages);
         // var user_name = JSON.parse(data.users_id);
-          $('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
+				$('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
      });
-  <% end %>
+	</script>
+<% end %>
 
 
 
