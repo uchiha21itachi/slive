@@ -1,5 +1,4 @@
 
-
 <% events.each do |event| %>
 <h1> <%=event.name%> </h1>
 <p>
@@ -43,8 +42,6 @@
 </p>
 
 
-<%= link_to "Make a survey", event_new_survey_path(event) %>
+<%= link_to "Create New", new_event_path %>
 
 <% end %>
-
-
