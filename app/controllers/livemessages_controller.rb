@@ -8,6 +8,11 @@ class LivemessagesController < ApplicationController
     @livemessage.event = @event
     if @livemessage.save
       flash[:notice] = "Message sent "
+
+      Pusher.trigger("event-#{@event.token}", 'livemessage', {
+      message: @livemessage.description,
+      user: @livemessage.user.email
+      })
       redirect_to event_live_index_path(@event)
     else
       flash[:notice] = "Some error occured. Message sent failure "

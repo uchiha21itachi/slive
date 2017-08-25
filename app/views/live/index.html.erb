@@ -1,14 +1,11 @@
+<div class="col-xs-12 col-sm-6 col-md-offset-6">
+    <i class="status"></i>
+</div>
+
 <div class="chat-join">
 
 
-
 </div>
-
-<div class="chat">
-
-
-</div>
-
 
 <div>
   <h1>Welcome to the event </h1>
@@ -18,6 +15,11 @@
 
 <div>
   <%= link_to "Make a survey", event_new_survey_path(@event) %>
+</div>
+
+<div class="chat">
+
+
 </div>
 
 <div>
@@ -37,6 +39,10 @@
     encrypted: true
     });
 
+    pusher.connection.bind('connected', function() {
+      $('.status').text('Realtime is go!');
+    });
+
 
     var channel = pusher.subscribe('event-<%= @event.token %>');
 
@@ -47,11 +53,8 @@
     channel.bind('livemessage', function(data) {
         // var msg_array = JSON.parse(data.livemessages);
         // var user_name = JSON.parse(data.users_id);
-
-        for (i=0; i<data.livemessages.length; i++){
-          $('.chat').append("<p>"+data.user[i]+":- "+ data.livemessages[i]  +"</p>" );
-        }
-      });
+          $('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
+     });
 
 
 
