@@ -28,6 +28,9 @@ gem 'bourbon'
 # custom
 gem "cocoon"
 
+# survey-charts
+gem "chartkick"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
