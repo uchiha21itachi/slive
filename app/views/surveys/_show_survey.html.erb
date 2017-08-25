@@ -1,8 +1,5 @@
-
-     
-
 <h3><%= survey.question %></h3>
-<%= simple_form_for([event,survey,vote]) do |f| %>
+<%= simple_form_for([event,survey,vote], remote: true) do |f| %>
 <%= f.association :option, as: :radio_buttons, collection: survey.options, label_method: :choice %>
 <%= f.button :submit %>
 <% end %>
