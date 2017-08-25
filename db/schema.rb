@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20170824201227) do
     t.index ["user_id"], name: "index_events_users_on_user_id", using: :btree
   end
 
-  s
 
   create_table "livemessages", force: :cascade do |t|
     t.string   "description"

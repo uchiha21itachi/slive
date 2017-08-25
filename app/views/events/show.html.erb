@@ -1,5 +1,3 @@
-
-
 <h1> <%=@event.name%> </h1>
 <p>
   <strong> Address: </strong>
@@ -28,11 +26,11 @@
 
 <p>
   <% if @event.presenter == current_user  %>
-    <strong> List of participants: </strong>
-    <% @event.users.each do |user| %>
-    <li><%= user.email %></li>
-    <%= link_to "Remove the participant", event_remove_user_from_event_path(@event, user), method: :post %>
-    <% end %>
+  <strong> List of participants: </strong>
+  <% @event.users.each do |user| %>
+  <li><%= user.email %></li>
+  <%= link_to "Remove the participant", event_remove_user_from_event_path(@event, user), method: :post %>
+  <% end %>
   <% end %>
 </p>
 
@@ -41,7 +39,18 @@
   <%= @event.presenter.email %>
 </p>
 
+<% if @event.presentation == nil %>
+  <%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
+  <% else %>
+  <%=  "Edit your presentation"  %>
+  <% end %>
 
-<%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
-
-
+<% if current_user == @event.presenter %>
+  <ul>
+    <% @event.presentation.slides.each do |p| %>
+    <br>
+    <%= cl_image_tag p.photo.url %>
+    <br>
+    <% end %>
+  </ul>
+<% end %>
