@@ -27,7 +27,14 @@ Rails.application.routes.draw do
   resources :questions, only: [] do
     resources :answers, only: [:new, :create, :edit, :update]
 
+
+
+
+  resources :questions, only: [] do
+    resources :answers, only: [:new, :create, :edit, :update]
+
   end
+
 
 
   post "register", to: "events#register_users"
