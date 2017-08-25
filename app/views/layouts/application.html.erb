@@ -6,7 +6,7 @@
   <title>TODO</title>
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
-  
+
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
   <%= javascript_include_tag 'application' %>
@@ -15,14 +15,7 @@
 <body>
   <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        
-        <%= yield %>
-      </div>
-    </div>
-  </div>
+    <%= yield %>
   <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
   <%= yield(:after_js) %>
 </body>
