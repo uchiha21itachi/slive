@@ -35,3 +35,8 @@ end
 gem 'omniauth-facebook'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'docsplit'
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'

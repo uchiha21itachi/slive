@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
 
-
   def index
     @questions = Question.all
   end
@@ -11,7 +10,7 @@ class QuestionsController < ApplicationController
 
 
   def show
-   @question = question.find(params[:id])
+    @question = question.find(params[:id])
   end
 
   def new
@@ -29,8 +28,8 @@ class QuestionsController < ApplicationController
       # redirect_to question_path(@question)
     else
       render :new
+    end
   end
-end
 
   def edit
     @question = question.find(params[:id])
@@ -42,16 +41,16 @@ end
       redirect_to question_path(@question), notice: 'question was successfully updated.'
     else
       render :edit
+    end
   end
-end
 
   def destroy
-     @question = question.find(params[:id])
+    @question = question.find(params[:id])
     @question.destroy
     redirect_to questions_path, notice: 'question was successfully deleted.'
   end
 
-private
+  private
 
   def question_params
     params.require(:question).permit(:question, :title, :category, options_attributes: [:choice,:id, :destroy])
