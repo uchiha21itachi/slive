@@ -1,4 +1,4 @@
-class LivemessagesController < ApplicationController
+# class LivemessagesController < ApplicationController
 
 
   def create
@@ -18,17 +18,10 @@ class LivemessagesController < ApplicationController
       flash[:notice] = "Some error occured. Message sent failure "
     end
   end
-
-  # def index
-  #   # @event = Event.find(params[:event_id])
-  #   @livemessage = @event.livemessages
-  #   Pusher.trigger("event-#{@event.token}", 'livemessage', {
-  #     livemessages:  "#{@livemessages}"
-  #     })
-  # end
   private
 
-  def params_livemessage
-    params.require(:livemessage).permit(:description)
-  end
-end
+
+#   def params_livemessage
+#     params.require(:livemessage).permit(:description)
+#   end
+# end
