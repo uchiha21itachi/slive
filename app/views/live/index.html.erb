@@ -1,65 +1,48 @@
-<div class="live-headings">
-  <h2>Welcome to the event </h2>
-  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-  <h3><%= link_to @event.name, event_path(@event) %></h3>
-</div>
+
 
 <div class="live-components">
 
-  <div class="pdf-slide">
-    <%=image_tag"presentation2.png"%>
+
+  <div class="live-headings">
+    <h2>Welcome to the event </h2>
+    <p>The event will start at <%= @event.time.strftime("%I" "%M") %></p>
+
   </div>
 
-   <div class="interactive-chat">
-  
-     <i class="status"></i>
-     <div class="live-chat">
+
+  <div class="pdf-slide">
+    <%=image_tag"presentation2.png"%>
+
+  </div>
+  <div class="survey">
+    &nbsp;
+    <%= link_to "Make a survey", new_event_survey_path(@event) %>
+    <%  if @event.surveys.any? %>
+      <%  @event.surveys.each do |survey|  %>
+    <%= render "surveys/show_survey", event: @event, survey:survey, vote: Vote.new %>
+    <% if @survey_ids.include?(survey.id) %>
+      <h4>
+      You selected 
+      <%= @votes.find{ |v| v.survey_id == survey.id }.option.choice %>
+      </h4>
+      <%= pie_chart survey.votes.group(:option_id).count%>       
+    <% end %>
+    <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="interactive-chat">
+<!-- 
     <div class="chat-join"></div>
     <div class="chat"></div>
-    <div class="chat-keyboard"> <%= render 'livemessages/new' %></div>
-   </div> 
+    <div class="chat-keyboard"> 
+      <%= render 'livemessages/new' %>
+    </div> -->
+  </div>
+
+  <div class="about-us">
+    <%= @event.description %>
+  </div>
   
-   <div class="survey">
-     <%= link_to "Make a survey", new_event_survey_path(@event) %>
-     <% if @event.surveys.any? %>
-     <% @event.surveys.each do |survey|  %>
-     <%= render "surveys/show_survey", event: @event, survey:survey, vote: Vote.new %>
-     <% if @survey_ids.include?(survey.id) %>
-     <h4>You selected <%= @votes.find{ |v| v.survey_id == survey.id }.option.choice %></h4>
-     <%= pie_chart survey.votes.group(:option_id).count%>       
-     <% end %>
-     <% end %>
-     <% end %>
-   </div>
- </div>
 </div>
-
-<% content_for(:after_js) do %>
-<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-<script>
-    // Enable pusher logging - don't include this in production
-    //Pusher.logToConsole = true;
-
-    var pusher = new Pusher('1980dcfefbb9558eb6ee', {
-      cluster: 'ap2',
-      encrypted: true
-    });
-
-    pusher.connection.bind('connected', function() {
-      $('.status').text('Realtime is go!');
-    });
-
-
-    var channel = pusher.subscribe('event-<%= @event.token %>');
-
-    channel.bind('message', function(data) {
-      $('.chat-join').append("<p>" + "<%=current_user.email%>" + " connected: " + data.message + " </p>");
-    });
-
-    channel.bind('livemessage', function(data) {
-        // var msg_array = JSON.parse(data.livemessages);
-        // var user_name = JSON.parse(data.users_id);
-        $('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
-      });
-    </script>
-    <% end %>
