@@ -8,7 +8,7 @@ class SlideuploaderJob < ApplicationJob
 
 
     file     = open(pdf_file_url)
-    puts file
+    puts pdf_file_url
     filename = File.basename(file)
 
     dirname = File.dirname("/tmp/presentations-#{presentation.id}/#{filename}")
