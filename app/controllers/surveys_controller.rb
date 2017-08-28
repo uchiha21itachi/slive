@@ -5,11 +5,10 @@ class SurveysController < ApplicationController
   end
 
   def create
- 
     @survey = Survey.new(survey_params)
     @survey.user = current_user
     @survey.event = Event.find(params[:event_id])
-   @survey.save
+    @survey.save
    redirect_to event_live_index_path(params[:event_id])
   end
 
@@ -19,8 +18,8 @@ class SurveysController < ApplicationController
 
   def destroy
   end
-  private 
+  private
   def survey_params
-    params.require(:survey).permit(:question, options_attributes: [:choice,:id, :destroy])
+    params.require(:survey).permit(:question, options_attributes: [:choice, :id, :destroy])
   end
 end
