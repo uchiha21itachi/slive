@@ -1,3 +1,6 @@
+require "open-uri"
+
+
 class SlideuploaderJob < ApplicationJob
   queue_as :critical
 
@@ -6,17 +9,23 @@ class SlideuploaderJob < ApplicationJob
     presentation = Presentation.find(presentation_id)
     pdf_file_url = presentation.pdf_file_url
 
+    file = nil
 
-    file     = open(pdf_file_url)
-    puts pdf_file_url
-    filename = File.basename(file)
+    dirname = File.dirname("/tmp/presentations-#{presentation.id}/m123.pdf")
+    FileUtils.mkdir_p(dirname)
 
-    dirname = File.dirname("/tmp/presentations-#{presentation.id}/#{filename}")
 
     puts dirname
+    if Rails.env.production?
+      open("#{dirname}/pdf-file-#{presentation.id}.pdf", 'wb') do |file|
+        file << open(pdf_file_url).read
+      end
+    else
+      file = open(pdf_file_url)
+    end
 
 
-    FileUtils.mkdir_p(dirname)
+    filename = File.basename(file)
 
     Docsplit.extract_images(file.path, output: dirname)
 
@@ -27,7 +36,6 @@ class SlideuploaderJob < ApplicationJob
 
       slide = Slide.create!(
         presentation: presentation, remote_photo_url: file_path)
-      puts slide.inspect
     end
   end
 end
