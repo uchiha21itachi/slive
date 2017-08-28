@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     post "livemessage", to: "livemessages#create"
     resources :livemessages, only: [:index]
-    
+
     resources :surveys, only: [:index, :show, :new, :create] do
       resources :votes, only: [:index, :show, :new, :create]
     end 
@@ -40,6 +40,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
