@@ -39,18 +39,24 @@
   <%= @event.presenter.email %>
 </p>
 
-<% if @event.presentation == nil %>
-  <%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
-  <% else %>
-  <%=  "Edit your presentation"  %>
-  <% end %>
 
-<% if current_user == @event.presenter %>
-  <ul>
-    <% @event.presentation.slides.each do |p| %>
-    <br>
-    <%= cl_image_tag p.photo.url %>
-    <br>
-    <% end %>
-  </ul>
+<% if @event.presentation == nil && current_user == @event.presenter %>
+  <%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
+<% elsif current_user == @event.presenter %>
+  <%=  "Edit your presentation"  %>
+<% end %>
+
+
+<% if @event.presentation == nil && current_user == @event.presenter %>
+  <p>"No presentation uploaded"</p>
+<% else %>
+  <% if current_user == @event.presenter %>
+    <ul>
+      <% @event.presentation.slides.each do |p| %>
+        <br>
+        <%= cl_image_tag p.photo.url %>
+        <br>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
