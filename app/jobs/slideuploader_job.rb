@@ -8,6 +8,7 @@ class SlideuploaderJob < ApplicationJob
 
 
     file     = open(pdf_file_url)
+    puts file
     filename = File.basename(file)
 
     dirname = File.dirname("/tmp/presentations-#{presentation.id}/#{filename}")
@@ -15,9 +16,7 @@ class SlideuploaderJob < ApplicationJob
     puts dirname
 
 
-    unless File.directory?(dirname)
-      FileUtils.mkdir_p(dirname)
-    end
+    FileUtils.mkdir_p(dirname)
 
     Docsplit.extract_images(file.path, output: dirname)
 
