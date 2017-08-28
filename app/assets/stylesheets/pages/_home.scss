@@ -35,10 +35,11 @@
 }
 
 .home-form{
-		margin-top: 3em;
-	.search_query{
+      margin-top: 3em;
+     .query{
 		display:inline-block;
 		width:70%;
+		padding: 1em;
 		input {
             border:1px solid #b9b9b9;
 			border-radius: 0px;
@@ -50,11 +51,11 @@
 		display:inline-block;
 		width:20%;
 		position: relative;
-		left: -10px;
+		left: -5px;
 		top: -1px;
 		background-color: #2b88ff;
 		border-radius: 0px;
-	    padding: 0.8em;
+	    padding: 1em;
 	}
 }
 

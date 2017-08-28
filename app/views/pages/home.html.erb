@@ -6,10 +6,11 @@
 		<h1>
 			Create your event <br> and tell them: it'Slive.
 		</h1>
-		<%= simple_form_for :search, html:{class: "home-form"} do |f| %>
-		<%=f.input :query, label: false, placeholder: "Whats your Event name?" %>
-		<%= f.submit :GO!, class: "btn btn-primary" %>
-		<% end %>
+		<form action= "<%=register_path%>" method = "post" class="home-form">
+			<input type="hidden" name="authenticity_token" value= "<%=form_authenticity_token%>">
+			<input type="text" placeholder="Whats your event name?" name="token" class= "query">
+			<input type="submit" value="Join" class= "btn btn-primary">
+		</form>	
 	</div>
 </div>
 
