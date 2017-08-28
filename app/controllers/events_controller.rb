@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :show, :update, :destroy]
 
   def index
-    @events = Event.where(user: current_user)
+    @events = current_user.events
   end
 
   def created_events
