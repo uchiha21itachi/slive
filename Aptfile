@@ -2,3 +2,6 @@ poppler-utils
 poppler
 graphicsmagick
 ghostscript
+libpng-dev
+zlib1g-dev
+libjasper-dev
