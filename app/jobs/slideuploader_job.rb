@@ -5,7 +5,7 @@ class SlideuploaderJob < ApplicationJob
   queue_as :critical
 
   def perform(presentation_id)
-
+    
     presentation = Presentation.find(presentation_id)
 
     return unless presentation.present?
