@@ -6,6 +6,14 @@
   <% if user_signed_in? %>
   	<%= link_to "Create Event", new_event_path%>
     <%= link_to "Dashboard",  user_dashboards_path(current_user)%>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+       <% end %>
+    <%= link_to user_path(current_user) do %>
+      <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+      <% end %>
+
+
   <% else %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "Login | Sign Up"), new_user_session_path %>
