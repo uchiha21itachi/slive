@@ -15,7 +15,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.new(presentation_params)
     @presentation.event = @event
     if @presentation.save
-      redirect_to event_presentation_path(@event, @presentation)
+      redirect_to event_path(@event)
     else
       render :new
     end

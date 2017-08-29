@@ -11,7 +11,6 @@ class SlideuploaderJob < ApplicationJob
     return unless presentation.present?
     pdf_file_url = presentation.pdf_file_url
 
-    file = nil
 
     dirname = File.dirname("/tmp/presentations-#{presentation.id}/m123.pdf")
     FileUtils.mkdir_p(dirname)
@@ -26,8 +25,8 @@ class SlideuploaderJob < ApplicationJob
     #filename = File.basename(file)
 
     #puts filename
-
-		pdf = Grim.reap(file)
+	
+		pdf = Grim.reap("#{dirname}/#{File.basename(file)}")
 		count = pdf.count # count how many pages
 		count.times do |index|
 
