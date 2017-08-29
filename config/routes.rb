@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   ActiveAdmin.routes(self)
   devise_for :users,
@@ -24,7 +28,7 @@ Rails.application.routes.draw do
 
     resources :surveys, only: [:index, :show, :new, :create] do
       resources :votes, only: [:index, :show, :new, :create]
-    end 
+    end
 
   end
 
@@ -35,11 +39,6 @@ Rails.application.routes.draw do
   post "register", to: "events#register_users"
   root to: 'pages#home'
 
-  # Sidekiq Web UI, only for admins.
-  require "sidekiq/web"
-  authenticate :user, lambda { |u| u.admin } do
-    mount Sidekiq::Web => '/sidekiq'
-  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
