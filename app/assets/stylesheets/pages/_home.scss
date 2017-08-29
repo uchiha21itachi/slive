@@ -7,7 +7,7 @@
 
 .main-search-bar{
 	display:grid;
-    grid-template-columns: 2fr 3.5fr 2fr;	
+    grid-template-columns: 2fr 3.5fr 2fr;
     grid-template-areas: ". home-component .";
     margin-top: 4em;
 }
@@ -83,10 +83,10 @@
 	&:nth-child(2) {
 		border-left:  1px solid #ccc;
 		border-right: 1px solid #ccc;
-	}   
+	}
 
-	p { 
-		width: 80%; 
+	p {
+		width: 80%;
 		margin: 0 auto;
 		font-weight: 300;
 		color: #888;
@@ -113,8 +113,3 @@
    }
 
 }
-
-
-
-
-

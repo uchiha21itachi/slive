@@ -25,6 +25,13 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.find(params[:id])
   end
 
+  def destroy
+    @event = Event.find(params[:event_id])
+    @presentation = @event.presentation
+    @presentation.destroy
+    redirect_to event_path(@event), notice: 'presentation was successfully deleted.'
+  end
+
   private
 
   def presentation_params

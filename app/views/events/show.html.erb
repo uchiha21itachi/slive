@@ -43,7 +43,8 @@
 <% if @event.presentation == nil && current_user == @event.presenter %>
   <%= link_to "Upload your presentation", new_event_presentation_path(@event) %>
 <% elsif current_user == @event.presenter %>
-  <%=  "Edit your presentation"  %>
+  <%= link_to "Remove presentation", event_presentation_path(@event, @event.presentation), method: :delete %>
+  <%= link_to "Add a presentation", new_event_presentation_path(@event) %>
 <% end %>
 
 
