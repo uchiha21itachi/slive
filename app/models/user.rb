@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
 
   # validates :full_name, presence: true
   validates :email, presence: true
