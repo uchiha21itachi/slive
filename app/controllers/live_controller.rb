@@ -6,9 +6,7 @@ class LiveController < ApplicationController
 
     @votes = current_user.votes
     @survey_ids = @votes.map { |v| v.survey_id }
-    Pusher.trigger("event-#{@event.token}", 'message', {
-      message: 'Hello'
-      })
+
   end
 
 
@@ -18,3 +16,6 @@ class LiveController < ApplicationController
 end
  # livemessages:  JSON.generate(@livemessages.pluck(:description)),
       # user_name: JSON.generate(@livemessages.pluck(:user_id))
+ # Pusher.trigger("event-#{@event.token}", 'message', {
+ #      message: 'Hello'
+ #      })

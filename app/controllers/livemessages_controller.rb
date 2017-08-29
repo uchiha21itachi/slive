@@ -18,6 +18,7 @@
       flash[:notice] = "Some error occured. Message sent failure "
     end
   end
+
   private
 
 
