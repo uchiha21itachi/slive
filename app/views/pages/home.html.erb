@@ -4,7 +4,7 @@
 <div class="main-search-bar">
 	<div class="home-component">
 		<h1>
-			Create your event <br> and tell them: it'Slive.
+			Create your event <br> and tell them: <span class="underline--magical">it'Slive.</span>
 		</h1>
 		<form action= "<%=register_path%>" method = "post" class="home-form">
 			<input type="hidden" name="authenticity_token" value= "<%=form_authenticity_token%>">
@@ -14,7 +14,7 @@
 	</div>
 </div>
 
-<div class="quick-info">
+<!-- <div class="quick-info">
 	<div class="quick-info-components">
 		<h3>
 			Create your event right now
@@ -39,17 +39,29 @@
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae recusandae doloribus fugiat amet. 
 		</p>
 	</div>
+</div> -->
+<div class="caricatures">
+	<div class="home-text-button">
+	<br><br>
+		<h2>A <span class="underline--magical">POWERFUL</span> PRESENTATION TOOL</h2>
+		<br>
+	  <p>Slive is a powerful tool designed to help presenter make the most out of his presentation.It allows you to create user interactions during a presentation without breaking the flow of your presentation.It's a blessing.</p>
+	  <span class="underline--magical"> <%= link_to "GET STARTED", new_event_path %></span>
+	</div>
+	<div class="img-container">
+     <%= image_tag "slides-3.png", class: "img-1" %>
+	</div>
+	
 </div>
 
-
-<div class="caricatures">
+<div class="caricatures-2">
 	<div class="home-image">
 		<%= image_tag "home-image.png" %>
 	</div>
 	<div class="home-text-button">
-		<h2>Slive is where user interactivity is happening</h2>
+		<h2>REACH YOUR <span class="underline--magical">AUDIENCE</span> BETTER.</h2>
 		<br>
-	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, eius tempore non sit rem reprehenderit modi eligendi sunt natus nihil iusto eveniet hic neque atque esse ullam odio tempora animi!</p>
-	  <%= link_to "Get started", "#", class: 'btn btn-primary' %>
+	  <p>Slive helps you get real time surveys from the whole room. It facilitates a bunch of interactive activities - like push information snippets or collect questions and doubts at the end of your presentation.</p>
+	  <span class="underline--magical"><%= link_to "FEATURES" %></span>
 	</div>
 </div>
