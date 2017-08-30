@@ -1,4 +1,13 @@
 <!-- THIS PARTIAL NEEDS A VARIABLE FROM OTHER VIEWS -->
 <% events.each do |event| %>
-<h3> <%= event.date %> - <%= link_to event.name, event_path(event)%> </h3>
+<div class="card">
+  <div class="card-description">
+    <h3> <%= event.date %> - <%= link_to event.name, event_path(event)%> </h3>
+    <% if event.presentation && event.presentation.slides.count > 0 %>
+    <div class="card-img">
+      <p> <%= cl_image_tag(event.presentation.slides.first.photo.url) %> </p>
+    </div>
+    <% end %>
+  </div>
+</div>
 <% end %>

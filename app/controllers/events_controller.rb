@@ -41,7 +41,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @slides = @event.presentation.slides
+    if current_user == @event.presenter && @event.presentation != nil 
+      @slides = @event.presentation.slides
+    end
   end
 
   def new
