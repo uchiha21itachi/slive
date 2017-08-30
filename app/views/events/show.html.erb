@@ -71,4 +71,6 @@
   </a>
 </div>
 
-<p>TRIGGER</p>
+<% if current_user == @event.presenter %>
+  <p>TRIGGER</p>
+<% end %>
