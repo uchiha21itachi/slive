@@ -14,6 +14,7 @@ class PresentationsController < ApplicationController
     @event = Event.find(params[:event_id])
     @presentation = Presentation.new(presentation_params)
     @presentation.event = @event
+    @slides = @event.presentation.slides
     if @presentation.save
       redirect_to event_path(@event)
     else
@@ -24,6 +25,15 @@ class PresentationsController < ApplicationController
   def show
     @presentation = Presentation.find(params[:id])
   end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @presentation = @event.presentation
+    @slides = @event.presentation.slides
+    @presentation.destroy
+    redirect_to event_path(@event), notice: 'presentation was successfully deleted.'
+  end
+
 
   private
 

@@ -3,5 +3,5 @@
   <p> "You have no event for the moment"</p>
 <%# else %> -->
   <% events.each do |event| %>
-    <h2> <%= link_to event.name, event_path(event)%> </h2>
+    <h3> <%= event.date %> - <%= link_to event.name, event_path(event)%> </h3>
   <% end %>

@@ -41,6 +41,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @slides = @event.presentation.slides
   end
 
   def new
