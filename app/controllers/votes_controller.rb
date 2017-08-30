@@ -28,28 +28,16 @@ class VotesController < ApplicationController
 			end
 
 		end
-    user_vote(@survey)
 	end
-
-  # def user_vote(survey)
-  #   @survey = survey
-  #   @votes = current_user.votes
-  #   @survey_ids = @votes.map { |v| v.survey_id }
-  #   if @survey_ids.include?(@survey.id)
-  #     @vote = @votes.find{ |v| v.survey_id == @survey.id}
-  #   else
-  #     @vote = "No vote"
-  #   end
-  #   Pusher.trigger("event-#{@event.token}", 'survey_votes', {
-  #         vote: @vote
-  #       })
-  # end
 
   def pie_chart_votes(survey)
     @survey = survey
-    # pie_chart @survey.votes.group(:option_id).count
+    data = @survey.options.map(&:as_json)
+
     Pusher.trigger("event-#{@event.token}", 'survey_pie_chart', {
-          votes: @survey.votes
+          votes: JSON.parse(data.to_json),
+          id: @survey.id,
+          title: @survey.question
         })
   end
 

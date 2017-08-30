@@ -4,8 +4,8 @@ class LiveController < ApplicationController
     @livemessage = Livemessage.new
     @event = Event.find(params[:event_id])
 
-    @votes = current_user.votes
-    @survey_ids = @votes.map { |v| v.survey_id }
+    @ordered_objects = (@event.surveys.to_a + @event.livemessages.to_a).sort_by{|o| o.created_at}
+
 
   end
 
