@@ -1,4 +1,4 @@
-<h1> <%=@event.name%> </h1>
+<h1> <%= link_to @event.name, event_live_index_path(@event)%> </h1>
 <p>
   <strong> Address: </strong>
   <%= @event.address %>

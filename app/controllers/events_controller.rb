@@ -12,17 +12,21 @@ class EventsController < ApplicationController
 
   def register_users
     @event = Event.find_by(token: params[:token])
-    if current_user == @event.presenter
-      flash[:notice] = "Your are presenting. Welcome to your event "
-      redirect_to event_live_index_path(@event)
-    elsif @event.users.include?(current_user)
-      flash[:notice] = "welcome to the event"
-      redirect_to event_live_index_path(@event)
+    if @event == nil
+      flash[:notice] = "This event does not exist"
     else
-      @event.users << current_user
-      @event.save
-      flash[:notice] = "welcome to the event. Joined the event successfully"
-      redirect_to event_live_index_path(@event)
+      if current_user == @event.presenter
+        flash[:notice] = "Your are presenting. Welcome to your event "
+        redirect_to event_live_index_path(@event)
+      elsif @event.users.include?(current_user)
+        flash[:notice] = "welcome to the event"
+        redirect_to event_live_index_path(@event)
+      else
+        @event.users << current_user
+        @event.save
+        flash[:notice] = "welcome to the event. Joined the event successfully"
+        redirect_to event_live_index_path(@event)
+      end
     end
   end
 
@@ -41,7 +45,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    if current_user == @event.presenter && @event.presentation != nil 
+    if current_user == @event.presenter && @event.presentation != nil
       @slides = @event.presentation.slides
     end
   end

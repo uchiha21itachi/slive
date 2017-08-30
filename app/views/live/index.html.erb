@@ -1,7 +1,5 @@
 <div class="live-headings">
-  <h2>Welcome to the event </h2>
-  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-  <h3><%= link_to @event.name, event_path(@event) %></h3>
+  <h1><%= link_to @event.name, event_path(@event) %></h1>
 </div>
 
 <div class="status">
@@ -14,9 +12,8 @@
 </div>
 
 <div>
-   <h1>Welcome to the event </h1>
-   <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-   <h3><%= link_to @event.name, event_path(@event) %></h3>
+   <h2>Welcome to the event </h2>
+   <h3>The event will start at <%= @event.time.strftime("%I" "%M") %></h3>
 </div>
 
 <div>
@@ -128,5 +125,3 @@
   <!-- channel.bind('survey_votes', function(data) {
         $('.chat').append("<p>"+":- "+ data.vote +"</p>" );
     }) -->
-
-
