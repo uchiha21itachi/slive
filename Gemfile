@@ -12,7 +12,8 @@ gem 'redis'
 
 
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
@@ -27,6 +28,12 @@ gem 'bourbon'
 
 # custom
 gem "cocoon"
+
+
+
+gem 'rails-assets-particles.js', source: 'https://rails-assets.org'
+
+
 
 # survey-charts
 gem "chartkick"
@@ -44,7 +51,11 @@ end
 gem 'omniauth-facebook'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'docsplit'
+
+# Convert PDF to Images!
+gem 'grim'
+
+
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
 gem 'sidekiq'

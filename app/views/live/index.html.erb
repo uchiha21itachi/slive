@@ -1,6 +1,9 @@
-<div class="col-xs-12 col-sm-6 col-md-offset-6">
-    <i class="status"></i>
+<div class="live-headings">
+  <h2>Welcome to the event </h2>
+  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
+  <h3><%= link_to @event.name, event_path(@event) %></h3>
 </div>
+
 
 <div class="chat-join">
 
@@ -43,12 +46,13 @@
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
   <script>
+
     // Enable pusher logging - don't include this in production
     //Pusher.logToConsole = true;
 
     var pusher = new Pusher('1980dcfefbb9558eb6ee', {
-			cluster: 'ap2',
-			encrypted: true
+      cluster: 'ap2',
+      encrypted: true
     });
 
     pusher.connection.bind('connected', function() {
@@ -67,6 +71,7 @@
     });
 
     channel.bind('livemessage', function(data) {
+
 				$('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
      });
 
@@ -120,3 +125,5 @@
   <!-- channel.bind('survey_votes', function(data) {
         $('.chat').append("<p>"+":- "+ data.vote +"</p>" );
     }) -->
+
+       
