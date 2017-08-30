@@ -1,0 +1,26 @@
+.newevent{
+	margin-top: 7em;
+	margin: auto;
+	font-family: "Montserrat", sans-serif;
+	width: 60%;
+	color: #506982;
+	#formheading{
+		color:  #506982;
+	}
+	
+	.nameaddress{
+		border-top: 4px solid  #506982;
+		padding-top:1em;
+	}
+
+	.datetime{
+		display:flex;
+		.timeinput{
+			margin-left: 5em;
+		}	
+    }
+ 	.btn{
+ 		background-color: #2b88ff;
+ 		color:#fff;
+ 	}
+}
