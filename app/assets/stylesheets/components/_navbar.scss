@@ -3,13 +3,14 @@
   justify-content: space-between;
 }
 
-.logo{
-   img{
-    opacity:0.8;
-   }
+.background-blue {
+
+  background-color: $blue;
 }
 
-
+.logo{
+  padding: 1em;
+}
 
 .login {
   display:flex;

@@ -1,11 +1,10 @@
-<div class="wrapper-nav">
+<div class="wrapper-nav <%= current_page?(root_path) ? '' : 'background-blue'%>">
   <div class="logo">
   <% if current_page?(root_path) %>
     <%= link_to image_tag("logo.png"), root_path %>
   <% else %>
-  &nbsp;&nbsp;
-    <h3 class="underline--magical" style="display: inline-block;"><%= link_to "Slive", root_path %></h3>
-  <% end %> 
+   <%= link_to image_tag("slive.png"), root_path %>
+   <% end %>
    </div>
   <div class="login">
   <% if user_signed_in? %>

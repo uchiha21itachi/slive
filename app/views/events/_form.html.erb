@@ -1,20 +1,53 @@
-<%= simple_form_for [@event] do |f| %>
-
-<div class="newevent">
-<h2 id="formheading">Create your Event.</h2>
-<div class="nameaddress">
-		<%= f.input :name, placeholder: "Name of the Event"%>
-
-		<%= f.input :address, placeholder: "Address for your Event."%>
-	</div>
-	<div class="datetime">
-	<div><%= f.input :date%></div>
-	<div class="timeinput"><%= f.input :time%></div>	
-	</div>		
-	<div class="description">
-		<%= f.input :description, as: :text,:input_html => {:rows => 10},placeholder: " Description of the Event." %>
-	</div>		
-	<%= f.submit class: "btn" %>
-
-	<%end%>
+<div class="container">
+	<div class="row page-title"><h2> /Create Event </h2></div>
+     <div class="row page-subtitle"><p>After this step, you are going to add slides</p></div>
+	
 </div>
+<div class="container">
+	<div class="row event-new">
+		<%= simple_form_for [@event] do |f| %>
+        <%= f.input :name, required: false, :label => "What's your event about? Give it a title" %>
+		<%= f.input :address, required: false, :label => "What's the location of your event?"%>
+		<div class="time_date"> 
+			<div> <%= f.input :date, required: false, :label => "When is your event happening?"%></div>
+			<div id= "time"> <%= f.input :time, required: false %></div>
+		</div>
+		<%= f.input :description, required: false, as: :text,:input_html => {:rows => 10},:label => "Describe your event" %>
+	
+		<div class="submit-event"> 
+		<div></div>
+		<div class = "button-for-event"><%= f.submit "Create", class: "btn" %></div>
+		</div>
+	
+
+		<% end %>
+
+	</div>		
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
