@@ -9,6 +9,7 @@
   margin-top: 40px;
 }
 .footer-links {
+  padding-left: 20px;
   display: flex;
   align-items: center;
 }
@@ -24,4 +25,8 @@
 }
 .footer .fa-heart {
   color: $red;
+}
+
+.footer-copyright {
+  padding-right: 20px;
 }
