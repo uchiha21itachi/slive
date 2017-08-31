@@ -1,26 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for @question, url: event_new_question_path(@event), method: :post do |f|  %>
-     
+      <%= simple_form_for @question, url: event_questions_path(@event), method: :post do |f|  %>
         <%= f.input :question%>
-        <%= f.input :category, as: :select, collection: %w(question survey) %>
-
-        <div id="options">
-          <h3>Create Options</h3>
-
-          <%= f.simple_fields_for :options do |option| %>
-           <%= render 'option_fields', f: option %>
-          <% end %>
-          <div class="links">
-            <%= link_to_add_association 'add option', f, :options %>
-          </div>
-        </div>
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
-</div>
-
-
-
