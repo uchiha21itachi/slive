@@ -3,7 +3,9 @@
   </div>
      <div class="row page-subtitle-flex">
        <p>add slides to your event</p>
-        <div class="participants-subtitle">participants</div>
+        <div>
+          <%= link_to "participants", event_participants_path(@event) , class: "participants-subtitle" %>
+        </div>
         <div class="surveys-subtitle">surveys</div>
         <div class="votes-subtitle">votes</div>
      </div>
@@ -64,12 +66,6 @@
       </div>
       <div class="row event-address"><i class="fa fa-id-badge" aria-hidden="true"></i> <%= @event.token %></div>
   </div>
-
-<!-- <div class="container">
-  <div class="row page-title"><h2>/ Triggers</h2></div>
-  <div class="row page-subtitle-flex"><p> Slides are index based, you can trigger specific actions based on their number</p>
-  </div>
-</div> -->
 
   <%# if @event.presenter == current_user  %>
   <!-- <strong> List of participants: </strong> -->

@@ -1,7 +1,4 @@
 imagemagick
 ghostscript
-libpng-dev
-zlib1g-dev
-libjasper-dev
 pdftk
 xpdf

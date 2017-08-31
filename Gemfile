@@ -29,8 +29,6 @@ gem 'bourbon'
 # custom
 gem "cocoon"
 
-
-
 gem 'rails-assets-particles.js', source: 'https://rails-assets.org'
 
 

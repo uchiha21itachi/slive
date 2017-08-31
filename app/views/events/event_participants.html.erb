@@ -1,0 +1,8 @@
+<div>
+  <p> Number of participants :  <%= @participants.count %> </p>
+
+  <% @participants.each do |p| %>
+    <p> Name :- <%= p.full_name  %> </p>
+    <p> Emal :- <%= p.email %> </p>
+  <% end %>
+</div>

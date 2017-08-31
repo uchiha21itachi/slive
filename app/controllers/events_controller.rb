@@ -26,6 +26,11 @@ class EventsController < ApplicationController
       end
   end
 
+  def event_participants
+    @event = Event.find(params[:event_id])
+  @participants = @event.users
+  end
+
   def remove_user_from_event
     @event = Event.find(params[:event_id])
     @user = User.find(params[:id])
