@@ -9,11 +9,13 @@
     if @livemessage.save!
       flash[:notice] = "Message sent"
 
-      Pusher.trigger("event-#{@event.token}", 'livemessage', {
-				message: @livemessage.description,
-				user: @livemessage.user.full_name
-      })
-      redirect_to event_live_index_path(@event)
+      json = {
+        message: @livemessage.description,
+        user: @livemessage.user.full_name,
+        id: @livemessage.id
+      }
+      LivemessageJob.perform_later(@event.token, json)
+      render json: json
     else
       flash[:notice] = "Some error occured. Message sent failure "
     end
