@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-
   validates :name, presence: true
   validates :date, presence: true
   validates :time, presence: true
@@ -13,8 +12,9 @@ class Event < ApplicationRecord
   has_one :presentation
   has_and_belongs_to_many :users
 
-
-
   belongs_to :presenter, class_name: User
 
+  def start_at
+    Time.new(date.year, date.month, date.day, time.hour, time.min)
+  end
 end
