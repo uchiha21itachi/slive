@@ -85,7 +85,21 @@
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
+  function escapeHtmlEntities (str) {
+    if (typeof jQuery !== 'undefined') {
+      // Create an empty div to use as a container,
+      // then put the raw text in and get the HTML
+      // equivalent out.
+      return jQuery('<div/>').text(str).html();
+    }
 
+    // No jQuery, so use string replace.
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/>/g, '&gt;')
+      .replace(/</g, '&lt;')
+      .replace(/"/g, '&quot;');
+  }
     // Enable pusher logging - don't include this in production
     //Pusher.logToConsole = true;
 
@@ -112,21 +126,21 @@
     var channel = pusher.subscribe('event-<%= @event.token %>');
 
     channel.bind('message', function(data) {
-      $('.chat-join').append("<p>" + "<%=current_user.email%>" + " connected: " + data.message + " </p>");
+      $('.chat-join').append("<p>" + "<%= j current_user.email%>" + " connected: " + escapeHtmlEntities(data.message) + " </p>");
     });
 
     channel.bind('livemessage', function(data) {
       $("#livemessage_description").val("");
-      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.message  + "</p></div>");
+      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ escapeHtmlEntities(data.message)  + "</p></div>");
       scrollToBottom();
     });
 
     channel.bind('question', function(data) {
-        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html +"</p></div>" );
+        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );
     })
 
     channel.bind('survey', function(data) {
-      $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
+      $('.chat-box').append("<p>"+data.user+":- "+ escapeHtmlEntities(data.survey_html) +"</p>" );
 
     })
 
