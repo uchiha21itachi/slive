@@ -1,4 +1,4 @@
 $('.vote_option').slideUp();
 
-$('#new_vote').append("You voted for <%= @vote.option.choice %>!");
+$('#new_vote').append("You voted for <%= j @vote.option.choice %>!");
 $('#chart-1').html("<%= j pie_chart @survey.votes.group(:option_id).count %>");

@@ -36,7 +36,7 @@
 <div class="wrapper">
   <div class="container">
     <div class="row notifications">
-     <div class="chat-join"></div>
+      <div class="chat-join"></div>
     </div>
   </div>
   <div class="container">
@@ -45,22 +45,23 @@
       <% @ordered_objects.each do |o| %>
         <% if  o.class == Survey %>
           <div class="text">
-             <p> <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+             <p>
+              <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
             </p>
           </div>
         <% elsif o.class == Question %>
           <div class="text">
-            <p> <%= o.user.full_name %> <%= o.question %> </p>
+            <p> <%= o.user.full_name %>: <%= o.question %> </p>
             <h5> Answers </h5>
             <div class= "text" id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
-                <%= a.user.full_name %> <%= a.description %>
+                <%= a.user.full_name %>: <%= a.description %>
                 <br>
               <% end %>
             </div>
-          </div>
-          <div class="text">
+            <div class="text">
               <%= render "questions/show_question", question: o, answer: Answer.new %>
+            </div>
           </div>
         <% else %>
           <div class="text">
@@ -78,13 +79,49 @@
   </div>
 </div>
 
+<div class="wrapper">
+  <div class="container">
+    <% @ordered_objects.each do |o| %>
+      <div class="question">
+      <%if o.class == Question %>
+        <p> <%= o.user.full_name %>: <%= o.question %> </p>
+        <h5> Answers </h5>
+        <div id="question-<%= o.id %>">
+          <% o.answers.each do |a| %>
+            <%= a.user.full_name %>: <%= a.description %>
+            <br>
+          <% end %>
+        </div>
+        <div class="text">
+          <%= render "questions/show_question", question: o, answer: Answer.new %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
 
 <% content_for(:after_js) do %>
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
+  function escapeHtmlEntities (str) {
+    if (typeof jQuery !== 'undefined') {
+      // Create an empty div to use as a container,
+      // then put the raw text in and get the HTML
+      // equivalent out.
+      return jQuery('<div/>').text(str).html();
+    }
 
+    // No jQuery, so use string replace.
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/>/g, '&gt;')
+      .replace(/</g, '&lt;')
+      .replace(/"/g, '&quot;');
+  }
     // Enable pusher logging - don't include this in production
     //Pusher.logToConsole = true;
 
@@ -135,17 +172,18 @@
     var channel = pusher.subscribe('event-<%= @event.token %>');
 
     channel.bind('message', function(data) {
-      $('.chat-join').append("<p>" + "<%=current_user.email%>" + " connected: " + data.message + " </p>");
+      $('.chat-join').append("<p>" + "<%= j current_user.email%>" + " connected: " + escapeHtmlEntities(data.message) + " </p>");
     });
 
     channel.bind('livemessage', appendLiveMessage);
 
+
     channel.bind('question', function(data) {
-        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html +"</p></div>" );
+        $('.chat-box').append("<div class='question'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );
     })
 
     channel.bind('survey', function(data) {
-      $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
+      $('.chat-box').append("<p>"+data.user+":- "+ escapeHtmlEntities(data.survey_html) +"</p>" );
 
     })
 
@@ -191,8 +229,3 @@
 
 
 
-
-  <!-- channel.bind('survey_votes', function(data) {
-        $('.chat').append("<p>"+":- "+ data.vote +"</p>" );
-
-      }) -->
