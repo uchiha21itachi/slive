@@ -11,7 +11,7 @@
 
       Pusher.trigger("event-#{@event.token}", 'livemessage', {
 				message: @livemessage.description,
-				user: @livemessage.user.email
+				user: @livemessage.user.full_name
       })
       redirect_to event_live_index_path(@event)
     else

@@ -10,7 +10,7 @@
 
 .logo{
   padding: 1em;
-  margin-left: 16%;
+  // margin-left: 16%;
 }
 
 .login {
@@ -53,7 +53,7 @@
 
     &:after {
         top: -1.8rem;
-  
+
   }
 }
 
@@ -68,8 +68,8 @@
 /* Dropdown menu */
 .navbar-wagon-dropdown-menu {
   margin-top: 15px;
-  
-  
+
+
 }
 .navbar-wagon-dropdown-menu li > a {
   transition: color 0.3s ease;

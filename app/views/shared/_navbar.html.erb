@@ -1,19 +1,20 @@
 <div class="wrapper-nav <%= current_page?(root_path) ? '' : 'background-blue'%>">
-  <div class="logo">
-  <% if current_page?(root_path) %>
-    <%= link_to image_tag("logo.png"), root_path %>
-  <% else %>
-   <%= link_to image_tag("slive.png"), root_path %>
-   <% end %>
-   </div>
+    <div class="logo">
+    <% if current_page?(root_path) %>
+      <%= link_to image_tag("logo.png"), root_path %>
+    <% else %>
+     <%= link_to image_tag("slive.png"), root_path %>
+     <% end %>
+     </div>
   <div class="login">
   <% if user_signed_in? %>
        <div><%= link_to "Dashboard",  user_dashboards_path(current_user)%>
-       <%= link_to "Create Event", new_event_path%></div>
+       <%= link_to "Create Event", new_event_path%>
+     </div>
   <div class="dropdown menu-icon avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
         <span class="menu-icon__line"></span>
     </div>
-       
+
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><%= link_to user_path(current_user) do %>
                 <%= t(".profile", default: "Profile") %>
@@ -21,18 +22,15 @@
             <li><%= link_to destroy_user_session_path, method: :delete do %>
                <%= t(".sign_out", default: "Log out") %>
                 <% end %></li>
-            
+
         </ul>
-      </div>
-    
+
   <% else %>
       <!-- Login link (when logged out) -->
-      <div class="log-in">  <%= link_to t(".sign_in", default: "Login | Sign Up"), new_user_session_path %>
+      <div class="log-in">
+        <%= link_to t(".sign_in", default: "Login | Sign Up"), new_user_session_path %>
+      </div>
     <% end %>
-    </div>
+
   </div>
 </div>
-
-
-
-
