@@ -1,4 +1,4 @@
 <%= simple_form_for([question, Answer.new], method: :post, remote: :true) do |f| %>
-  <%= f.input :description %>
+  <%= f.input :description, label: false, required: false, placeholder: " Answer here"%>
   <%= f.submit %>
 <% end %>
