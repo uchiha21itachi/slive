@@ -4,14 +4,12 @@
      <div class="row page-subtitle-flex">
        <p>add slides to your event</p>
         <div>
-          <%= link_to "participants", event_participants_path(@event) , class: "participants-subtitle" %>
+          <%= link_to "participants", event_participants_path(@event) , class: "participants-subtitle" %> :
+          <%=@event.users.count%>
         </div>
-        <div class="surveys-subtitle">surveys</div>
-        <div class="votes-subtitle">votes</div>
+        <div class="surveys-subtitle">surveys: <%=@event.surveys.count%> </div>
+        <div class="votes-subtitle">questions: <%=@event.questions.count%> </div>
      </div>
-     <span> 100</span>
-      <span>050</span>
-      <span>950</span>
 </div>
 
 

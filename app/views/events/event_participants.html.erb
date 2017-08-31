@@ -1,6 +1,5 @@
 <div>
-  <p> Number of participants :  <%= @participants.count %> </p>
-
+  <h2>Number of participants :  <%= @participants.count %> </h2>
   <% @participants.each do |p| %>
     <p> Name :- <%= p.full_name  %> </p>
     <p> Emal :- <%= p.email %> </p>
