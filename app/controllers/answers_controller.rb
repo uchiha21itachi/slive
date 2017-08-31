@@ -1,38 +1,43 @@
 class AnswersController < ApplicationController
 
- def index
+  def index
     @answers = Answer.all
   end
 
- def answers_by_question
+  def answers_by_question
     @user = current_user
     @answers = @questions.answers
   end
 
 
- def show
+  def show
    @answer = answer.find(params[:id])
   end
 
- def new
+  def new
     @question = Question.find(params[:question_id])
     @answer = Answer.new
   end
 
- def create
+  def create
     @question = Question.find(params[:question_id])
     @user = current_user
     @answer = Answer.new(answer_params)
     @answer.user = @user
     @answer.question = @question
     @event = @question.event
+
     if @answer.save
-      redirect_to event_live_index_path(@event)
+      respond_to do |format|
+        format.html { redirect_to event_live_index_path(@event) }
+        format.js
+      end
     else
       render :new
+    end
   end
 
- def edit
+  def edit
     @answer = answer.find(params[:id])
   end
 
@@ -49,7 +54,7 @@ class AnswersController < ApplicationController
 
 private
 
- def answer_params
+  def answer_params
     params.require(:answer).permit(:description)
   end
 
