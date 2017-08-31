@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row page-title"><h2> / <%=@event.name%></h2> <br>
-  <p>add slides to your event</p>
+  <div class="row page-title"><h2> / <%=@event.name%></h2>
   </div>
      <div class="row page-subtitle-flex">
+       <p>add slides to your event</p>
         <div class="participants-subtitle">participants</div>
         <div class="surveys-subtitle">surveys</div>
         <div class="votes-subtitle">votes</div>
@@ -12,6 +12,7 @@
 
 <div class="container">
   <div class="row event-upload-slides">
+    <span class="live"><i class="fa fa-dot-circle-o" aria-hidden="true"></i><%= link_to "Go to live page", event_live_index_path(@event) %></span>
      <% if @event.presentation == nil && current_user == @event.presenter %>
         <%= link_to "Click here to add slides.", new_event_presentation_path(@event) %>
     <% end %>
@@ -26,17 +27,17 @@
 
             <% end %>
           <% end %>
-
+          <br>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <i class="carousel-control-prev-icon" aria-hidden="true"></i>
+            <i class="sr-only">Previous></i>
           </a>
           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <i class="carousel-control-next-icon" aria-hidden="true"></i>
+            <i class="sr-only">Next></i>
           </a>
         </div>
-          <span><i class="fa fa-dot-circle-o" aria-hidden="true"></i><%= link_to "  Go to live page" %></span>
+
       </div>
   </div>
 </div>
