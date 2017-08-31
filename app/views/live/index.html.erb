@@ -30,10 +30,12 @@
           <div class="text">
             <p> <%= o.user.full_name %> <%= o.question %> </p>
             <h5> Answers </h5>
+            <div id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
                 <%= a.user.full_name %> <%= a.description %>
                 <br>
               <% end %>
+            </div>
           </div>
           <div class="text">
               <%= render "questions/show_question", question: o, answer: Answer.new %>
