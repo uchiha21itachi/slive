@@ -53,7 +53,7 @@
           <div class="text">
             <p> <%= o.user.full_name %>: <%= o.question %> </p>
             <h5> Answers </h5>
-            <div id="question-<%= o.id %>">
+            <div class= "text" id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
                 <%= a.user.full_name %>: <%= a.description %>
                 <br>
@@ -125,10 +125,34 @@
     // Enable pusher logging - don't include this in production
     //Pusher.logToConsole = true;
 
+    $("#new_livemessage").on("submit", function() {
+      setTimeout(function() {
+        $("#livemessage_description").val("");  
+      }, 0);
+    });
+
+    $("#new_livemessage").on("ajax:complete", function(event, request) {
+      console.log(request)
+      appendLiveMessage(request.responseJSON)
+    });
+
     var pusher = new Pusher('1980dcfefbb9558eb6ee', {
       cluster: 'ap2',
       encrypted: true
     });
+
+    function appendLiveMessage(data) {
+      if ($("[data-id='" + data.id + "']").length > 0) {
+        return;
+      }
+
+      $('.chat-box').append(
+        "<div class='text' data-id='" + data.id + "'>" +
+          "<p>"+data.user+":- "+ data.message  + "</p>" +
+        "</div>"
+      );
+      scrollToBottom();
+    }
 
     function scrollToBottom() {
       $('.chat-box').animate({ scrollTop: $('.chat-box')[0].scrollHeight });
@@ -151,11 +175,8 @@
       $('.chat-join').append("<p>" + "<%= j current_user.email%>" + " connected: " + escapeHtmlEntities(data.message) + " </p>");
     });
 
-    channel.bind('livemessage', function(data) {
-      $("#livemessage_description").val("");
-      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ escapeHtmlEntities(data.message)  + "</p></div>");
-      scrollToBottom();
-    });
+    channel.bind('livemessage', appendLiveMessage);
+
 
     channel.bind('question', function(data) {
         $('.chat-box').append("<div class='question'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );

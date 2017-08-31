@@ -5,7 +5,7 @@ class LiveController < ApplicationController
     @event = Event.find(params[:event_id])
 
     @ordered_objects = (@event.surveys.to_a + @event.livemessages.to_a + @event.questions.to_a).sort_by{|o| o.created_at}
-
+    
     if @event.presentation != nil
      @slides = @event.presentation.slides
     end
