@@ -22,7 +22,7 @@
 }
 
 .underline--magical {
-  background-image: linear-gradient(120deg, #2b88ff 0%, #78b3ff 100%);
+  background-image: linear-gradient(120deg, $blue 0%, #78b3ff 100%);
   background-repeat: no-repeat;
   background-size: 100% 0.2em;
   background-position: 0 88%;
@@ -67,7 +67,7 @@
 		position: relative;
 		left: -5px;
 		top: -1px;
-		background-color: #2b88ff;
+		background-color: $blue;
 		border-radius: 0px;
 	    padding: 1em;
 	}
@@ -82,8 +82,8 @@
  }
 
 .quick-info-components h3{
-	color: #2b88ff;
-    font-family: "Montserrat";
+	 color: $blue;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     padding: 0 1em;
     font-size: 24px;
@@ -103,7 +103,7 @@
 		width: 80%;
 		margin: 0 auto;
 		font-weight: 300;
-		color: #888;
+		color: $gray;
 	}
 
 }
@@ -121,14 +121,11 @@
     padding:1em;
 
     h2{
-    	font-family:'Work Sans', sans-serif;
-    	opacity: 0.8;
-    	color: black;
+      color: black;
     }
     p{
-     color: #5e7582;
+     color:#343941 ;
      font-size: 19px;
-     font-family: 'Montserrat', sans-serif;
      font-weight: 300;
     }
     a{
@@ -139,7 +136,7 @@
     .underline--magical{
 
      	text-decoration: none;
-        font-family: 'Work Sans' , sans-serif;
+      
     }
    }
    .img-container{
@@ -165,7 +162,7 @@
     grid-template-rows: auto;
     grid-template-areas: ". img-container text .";
 	margin-top: 4em;
-	background-color:#2b88ff;
+	background-color:$blue;
 	padding-bottom: 40px;
 
    .home-text-button{
@@ -174,14 +171,12 @@
     margin-top:4em;
 
     h2{
-    	font-family:'Work Sans', sans-serif;
     	color: white;
     }
     p{
-     color: #cee0ff;
+     color: $gray;
      font-size: 19px;
-     font-family: 'Montserrat', sans-serif;
-     font-weight: 300;
+     
     }
     a{
     	text-decoration:none;
@@ -189,13 +184,13 @@
     	font-size: 24px;
     }
     .underline--magical{
-        background-image: linear-gradient(120deg, #ffa22b 0%, #ffa22b 100%);
-     	font-family: 'Work Sans' , sans-serif;
+    background-image: linear-gradient(120deg, $yellow 0%, $yellow 100%);
+     	
     }
    }
    .home-image{
    	margin-top:4em;
-	grid-area: img-container;
+	  grid-area: img-container;
     height: 100%;
     width: 50%;
    }
