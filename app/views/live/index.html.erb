@@ -1,6 +1,7 @@
 <div class="live-headings">
   <h2>Welcome to the event </h2>
   <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
+  <p>@event.start_at</p>
   <h3><%= link_to @event.name, event_path(@event) %></h3>
 </div>
 

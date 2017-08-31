@@ -26,6 +26,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def event_participants
+    @event = Event.find(params[:event_id])
+  @participants = @event.users
+  end
+
   def remove_user_from_event
     @event = Event.find(params[:event_id])
     @user = User.find(params[:id])
@@ -41,7 +46,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    if current_user == @event.presenter && @event.presentation != nil 
+    if current_user == @event.presenter && @event.presentation != nil
       @slides = @event.presentation.slides
     end
   end
