@@ -114,7 +114,7 @@
     grid-template-rows: auto;
     grid-template-areas: ". text img-container .";
 	margin-top: 4em;
-	height: 90vh;
+	height: 60vh;
    .home-text-button{
    	grid-area: text;
    	margin-top:4em;
@@ -138,7 +138,7 @@
     }
     .underline--magical{
 
-     	text-decoration: none;  
+     	text-decoration: none;
         font-family: 'Work Sans' , sans-serif;
     }
    }
@@ -159,16 +159,14 @@
 }
 
 
-
-
 .caricatures-2 {
 	display:grid;
     grid-template-columns: 5%  45% 45% 5%;
     grid-template-rows: auto;
     grid-template-areas: ". img-container text .";
 	margin-top: 4em;
-	height:90vh;
 	background-color:#2b88ff;
+	padding-bottom: 40px;
 
    .home-text-button{
    	grid-area: text;
