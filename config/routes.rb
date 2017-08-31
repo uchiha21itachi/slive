@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :live, only: [:index]
+    get "/participants", to: "events#event_participants", as: "participants"
     post "remove_user_from_event/:id", to: "events#remove_user_from_event", as: "remove_user_from_event"
     resources :questions, only: [:index, :show, :new, :create]
 
