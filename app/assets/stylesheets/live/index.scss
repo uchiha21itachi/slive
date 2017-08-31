@@ -1,10 +1,50 @@
-.live-headings{
-	text-align: center;
-	margin: auto;
-}	
-
-.live-components{
-	display:flex;
-	justify-content: space-around;
-	margin-top: 5em;
+.slide-show{
+	height: 55vh;
+	background-color: #f8f8f8;
+	margin: 0 auto;
+	padding: 2.5em 4em;
+	border-radius: 0;
+}
+.chat-box{
+	padding: 2.5em 4em;
+	margin: 0 auto;
+  	margin-top: 2em;
+  	width: 90%;
+  	max-height: 70vh;
+  	overflow: auto;
+  	border-radius: 0;
+	.text{
+		box-shadow: 0 0 1px #999;
+		background-color: #f8f8f8;
+		width: 100%;
+		margin-bottom: 1em;
+		margin-top: 1em;
+		border-radius: 0;
+		padding: 1.25em 2em;
+	}
+}
+.keyboard{
+	.new-message{
+		margin: 0 auto;
+  		margin-top: 2em;
+  		width: 90%;
+  		position: relative;
+  		height: 4em;
+  		border-radius: 0;
+	}
+	.text-area{
+		height: 4.5em;
+		border-radius: 0;
+	}
+	.btn{
+		position: absolute;
+		display: inline-block;
+		right:0;
+		top:0;
+		height:4.5em;
+		width: 10em;
+		background-color:$green;
+		color: white;
+		border-radius: 0;
+	}
 }

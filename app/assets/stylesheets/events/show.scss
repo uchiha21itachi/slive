@@ -29,7 +29,6 @@
   background-color: #F8F8F8;
   color: #929292;
   width: 80%;
-  height: 300px;
   a{
     text-decoration: none;
     margin: 0 auto;
@@ -39,18 +38,21 @@
   span{
     a{
       color: white;
+      justify-content: center;
     }
     height: 2.3em;
     width: 9em;
     padding-top: 5px;
     position: absolute;
     right: 0;
-    bottom: 0;
-    background-color: $red;
-    color: white;
+    top: 0;
     text-align: center;
-    
+    background-color: #519CFD;
   }
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #519CFD;
 }
 
 .page-title{
@@ -79,7 +81,5 @@
   .surveys-subtitle{
     margin-right: 22px;
   }
-
-
 
 }
