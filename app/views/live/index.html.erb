@@ -5,9 +5,10 @@
 
 <div class="container">
   <div class="row page-title">
-    <h2>/ <%=@event.name %> </h2> 
+    <h2>/ <%= link_to @event.name, event_path(@event) %> </h2>
     <%= link_to "Ask the presenter" %>
-    <%#= link_to "Make a survey", new_event_survey_path(@event) %>
+    <%= link_to "Make a survey", new_event_survey_path(@event) %>
+    <%= link_to "Ask a Question", new_event_question_path(@event) %>
   </div>
 
 <div class="wrapper">
@@ -20,15 +21,29 @@
     <div class="row chat-box">
      <div class="status"></div>
       <% @ordered_objects.each do |o| %>
-      <% if  o.class == Survey %>
-        
-         <div class="text"><p> <%= o.user.email %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
-        </p></div>
-      <% else %>
-        <div class="text"><p> <%= o.user.email %>: <%= o.description %></p> </div>    
-      <% end  %>
-
-    <% end %>
+        <% if  o.class == Survey %>
+          <div class="text">
+             <p> <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+            </p>
+          </div>
+        <% elsif o.class == Question %>
+          <div class="text">
+            <p> <%= o.user.full_name %> <%= o.question %> </p>
+            <h5> Answers </h5>
+              <% o.answers.each do |a| %>
+                <%= a.user.full_name %> <%= a.description %>
+                <br>
+              <% end %>
+          </div>
+          <div class="text">
+              <%= render "questions/show_question", question: o, answer: Answer.new %>
+          </div>
+        <% else %>
+          <div class="text">
+            <p> <%= o.user.full_name %>: <%= o.description %></p>
+          </div>
+        <% end  %>
+      <% end %>
 
     </div>
   </div>
@@ -77,9 +92,13 @@
 
     channel.bind('livemessage', function(data) {
       $("#livemessage_description").val("");
-      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.message  +"</p></div>" );
+      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.message  + "</p></div>");
       scrollToBottom();
     });
+
+    channel.bind('question', function(data) {
+        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html +"</p></div>" );
+    })
 
     channel.bind('survey', function(data) {
       $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
