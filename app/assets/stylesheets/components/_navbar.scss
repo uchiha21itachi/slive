@@ -3,15 +3,18 @@
   justify-content: space-between;
 }
 
-.logo{
-   img{
-    opacity:0.8;
-   }
+.background-blue {
+
+  background-color: $blue;
 }
 
-
+.logo{
+  padding: 1em;
+  margin-left: 16%;
+}
 
 .login {
+  display:flex;
  	margin-right: 5%;
  	font-family: 'Montserrat', sans-serif;
  	color: white;
