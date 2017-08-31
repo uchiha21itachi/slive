@@ -69,7 +69,6 @@
           </div>
         <% end  %>
       <% end %>
-
     </div>
   </div>
   <div class="container">
@@ -148,7 +147,7 @@
 
       $('.chat-box').append(
         "<div class='text' data-id='" + data.id + "'>" +
-          "<p>"+data.user+":- "+ data.message  + "</p>" +
+          "<p>"+data.user+":- "+ escapeHtmlEntities(data.message)  + "</p>" +
         "</div>"
       );
       scrollToBottom();
@@ -172,18 +171,17 @@
     var channel = pusher.subscribe('event-<%= @event.token %>');
 
     channel.bind('message', function(data) {
-      $('.chat-join').append("<p>" + "<%= j current_user.email%>" + " connected: " + escapeHtmlEntities(data.message) + " </p>");
+      $('.chat-join').append("<p>" + "<%= j current_user.email%>" + " connected: " + escapeHtmlEntities(data.message) + "</p>");
     });
-
-    channel.bind('livemessage', appendLiveMessage);
 
 
     channel.bind('question', function(data) {
-        $('.chat-box').append("<div class='question'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );
+        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html + "</p></div>" );
+    channel.bind('livemessage', appendLiveMessage); 
     })
 
     channel.bind('survey', function(data) {
-      $('.chat-box').append("<p>"+data.user+":- "+ escapeHtmlEntities(data.survey_html) +"</p>" );
+      $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
 
     })
 
