@@ -17,11 +17,6 @@ $(document).ready(function(){
   console.log(data, survey);
 
 
-
-
-
-
-
   $("#chartContainer-" + data.id).empty();
   var chart = new CanvasJS.Chart("chartContainer-" + survey["id"],
   {
@@ -33,17 +28,18 @@ $(document).ready(function(){
       verticalAlign: "center",
       horizontalAlign: "left",
       fontSize: 20,
-      fontFamily: "Helvetica"
+      fontFamily: "montserrat"
     },
     theme: "theme2",
     data: [
     {
       type: "pie",
-      indexLabelFontFamily: "Garamond",
-      indexLabelFontSize: 20,
+      radius: 60,
+      indexLabelFontFamily: "montserrat",
+      indexLabelFontSize: 15,
       indexLabel: "{label}",
       startAngle:-20,
-      showInLegend: true,
+      showInLegend: false,
       toolTipContent:"{y} votes",
       dataPoints: data
     }]

@@ -1,55 +1,50 @@
-<div class="live-headings">
-  <h2>Welcome to the event </h2>
-  <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-  <p>@event.start_at</p>
-  <h3><%= link_to @event.name, event_path(@event) %></h3>
+<div class="container">
+  <div class="row slide-show">
+  </div>
 </div>
 
-<div class="status">
+<div class="container">
+  <div class="row page-title">
+    <h2>/ <%=@event.name %> </h2> 
+    <%= link_to "Ask the presenter" %>
+    <%#= link_to "Make a survey", new_event_survey_path(@event) %>
+  </div>
 
+<div class="wrapper">
+  <div class="container">
+    <div class="row notifications">
+     <div class="chat-join"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row chat-box">
+     <div class="status"></div>
+      <% @ordered_objects.each do |o| %>
+      <% if  o.class == Survey %>
+        
+         <div class="text"><p> <%= o.user.email %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+        </p></div>
+      <% else %>
+        <div class="text"><p> <%= o.user.email %>: <%= o.description %></p> </div>    
+      <% end  %>
+
+    <% end %>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row keyboard">
+      <%= render 'livemessages/new' %>
+    </div>
+  </div>
 </div>
 
-<div class="chat-join">
-
-
-</div>
-
-<div>
-   <h1>Welcome to the event </h1>
-   <h2>The event will start at <%= @event.time.strftime("%I" "%M") %></h2>
-   <h3><%= link_to @event.name, event_path(@event) %></h3>
-</div>
-
-<div>
-   <%= link_to "Make a survey", new_event_survey_path(@event) %>
-</div>
-
-
-<div class="chat">
-  <% @ordered_objects.each do |o| %>
-    <% if  o.class == Survey %>
-      <p>
-        <%= o.user.email %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
-      </p>
-
-
-    <% else %>
-      <p>
-        <%= o.user.email %>: <%= o.description %>
-      </p>
-    <% end  %>
-  <% end %>
-</div>
-
-<div>
-  <%= render 'livemessages/new' %>
-</div>
 
 <% content_for(:after_js) do %>
 
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
 
     // Enable pusher logging - don't include this in production
     //Pusher.logToConsole = true;
@@ -58,6 +53,12 @@
       cluster: 'ap2',
       encrypted: true
     });
+
+    function scrollToBottom() {
+      $('.chat-box').animate({ scrollTop: $('.chat-box')[0].scrollHeight });
+    }
+
+    scrollToBottom();
 
     pusher.connection.bind('connected', function() {
       $('.status').text('Realtime is go!');
@@ -75,12 +76,13 @@
     });
 
     channel.bind('livemessage', function(data) {
-
-				$('.chat').append("<p>"+data.user+":- "+ data.message  +"</p>" );
-     });
+      $("#livemessage_description").val("");
+      $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.message  +"</p></div>" );
+      scrollToBottom();
+    });
 
     channel.bind('survey', function(data) {
-        $('.chat').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
+      $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
 
     })
 
@@ -88,38 +90,39 @@
 
     channel.bind('survey_pie_chart', function(data) {
         // $('.chat').append("<p>"+ data.votes +"</p>" );
-      $("#chartContainer-" + data.id).empty();
-      var chart = new CanvasJS.Chart("chartContainer-" + data.id,
-      {
-        title:{
-          text: data.question
-        },
-                    animationEnabled: true,
-        legend:{
-          verticalAlign: "center",
-          horizontalAlign: "left",
-          fontSize: 20,
-          fontFamily: "Helvetica"
-        },
-        theme: "theme2",
-        data: [
+        $("#chartContainer-" + data.id).empty();
+        var chart = new CanvasJS.Chart("chartContainer-" + data.id,
         {
-          type: "pie",
-          indexLabelFontFamily: "Garamond",
-          indexLabelFontSize: 20,
-          indexLabel: "{label}",
-          startAngle:-20,
-          showInLegend: true,
-          toolTipContent:"{y} votes",
-          dataPoints: data.votes
-        }]
-      });
-      chart.render();
-    })
+          title:{
+            text: data.question
+          },
+          animationEnabled: true,
+          legend:{
+            verticalAlign: "center",
+            horizontalAlign: "left",
+            fontSize: 20,
+            fontFamily: "Montserrat"
+          },
+          theme: "theme2",
+          data: [
+          {
+            type: "pie",
+            indexLabelFontFamily: "Montserrat",
+            radius: 60,
+            indexLabelFontSize: 15,
+            indexLabel: "{label}",
+            startAngle:-20,
+            showInLegend: false,
+            toolTipContent:"{y} votes",
+            dataPoints: data.votes
+          }]
+        });
+        chart.render();
+      })
 
 
-	</script>
-<% end %>
+    </script>
+    <% end %>
 
 
 
@@ -128,6 +131,5 @@
 
   <!-- channel.bind('survey_votes', function(data) {
         $('.chat').append("<p>"+":- "+ data.vote +"</p>" );
-    }) -->
 
-
+      }) -->

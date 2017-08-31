@@ -12,18 +12,18 @@ class EventsController < ApplicationController
 
   def register_users
     @event = Event.find_by(token: params[:token])
-    if current_user == @event.presenter
-      flash[:notice] = "Your are presenting. Welcome to your event "
-      redirect_to event_live_index_path(@event)
-    elsif @event.users.include?(current_user)
-      flash[:notice] = "welcome to the event"
-      redirect_to event_live_index_path(@event)
-    else
-      @event.users << current_user
-      @event.save
-      flash[:notice] = "welcome to the event. Joined the event successfully"
-      redirect_to event_live_index_path(@event)
-    end
+      if current_user == @event.presenter
+        flash[:notice] = "Your are presenting. Welcome to your event "
+        redirect_to event_live_index_path(@event)
+      elsif @event.users.include?(current_user)
+        flash[:notice] = "welcome to the event"
+        redirect_to event_live_index_path(@event)
+      else
+        @event.users << current_user
+        @event.save
+        flash[:notice] = "welcome to the event. Joined the event successfully"
+        redirect_to event_live_index_path(@event)
+      end
   end
 
   def event_participants

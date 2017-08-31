@@ -17,7 +17,7 @@ class SurveysController < ApplicationController
       Pusher.trigger("event-#{@event.token}", 'survey', {
         survey: @survey.question,
         survey_html: html,
-        user: @survey.user.email
+        user: @survey.user.full_name
       })
      redirect_to event_live_index_path(@event)
     else
