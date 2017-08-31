@@ -36,7 +36,7 @@
 <div class="wrapper">
   <div class="container">
     <div class="row notifications">
-     <div class="chat-join"></div>
+      <div class="chat-join"></div>
     </div>
   </div>
   <div class="container">
@@ -75,6 +75,28 @@
   <div class="container">
     <div class="row keyboard">
       <%= render 'livemessages/new' %>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="container">
+    <% @ordered_objects.each do |o| %>
+      <div class="question">
+      <%if o.class == Question %>
+        <p> <%= o.user.full_name %>: <%= o.question %> </p>
+        <h5> Answers </h5>
+        <div id="question-<%= o.id %>">
+          <% o.answers.each do |a| %>
+            <%= a.user.full_name %>: <%= a.description %>
+            <br>
+          <% end %>
+        </div>
+        <div class="text">
+          <%= render "questions/show_question", question: o, answer: Answer.new %>
+        </div>
+      <% end %>
+    <% end %>
     </div>
   </div>
 </div>
@@ -136,7 +158,7 @@
     });
 
     channel.bind('question', function(data) {
-        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );
+        $('.chat-box').append("<div class='question'><p>"+data.user+":- "+ escapeHtmlEntities(data.question_html) +"</p></div>" );
     })
 
     channel.bind('survey', function(data) {
@@ -186,8 +208,3 @@
 
 
 
-
-  <!-- channel.bind('survey_votes', function(data) {
-        $('.chat').append("<p>"+":- "+ data.vote +"</p>" );
-
-      }) -->
