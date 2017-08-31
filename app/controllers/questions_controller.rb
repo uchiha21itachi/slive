@@ -8,7 +8,6 @@ class QuestionsController < ApplicationController
     @questions = @user.questions
   end
 
-
   def show
     @question = question.find(params[:id])
   end
@@ -25,7 +24,12 @@ class QuestionsController < ApplicationController
     @question.user = @user
     @question.event = @event
     if @question.save
-      # redirect_to question_path(@question)
+      html = render_to_string partial: "show_question", locals: { question: @question, answer: Answer.new }
+      Pusher.trigger("event-#{@event.token}", 'question', {
+          question_html: html,
+          user: @user.email
+      })
+      redirect_to event_live_index_path(@event)
     else
       render :new
     end
@@ -53,7 +57,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question, :title, :category, options_attributes: [:choice,:id, :destroy])
+    params.require(:question).permit(:question)
   end
 
 
