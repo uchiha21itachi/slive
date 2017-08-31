@@ -12,9 +12,6 @@ class EventsController < ApplicationController
 
   def register_users
     @event = Event.find_by(token: params[:token])
-    if @event == nil
-      flash[:notice] = "This event does not exist"
-    else
       if current_user == @event.presenter
         flash[:notice] = "Your are presenting. Welcome to your event "
         redirect_to event_live_index_path(@event)
@@ -27,7 +24,6 @@ class EventsController < ApplicationController
         flash[:notice] = "welcome to the event. Joined the event successfully"
         redirect_to event_live_index_path(@event)
       end
-    end
   end
 
   def remove_user_from_event

@@ -13,7 +13,7 @@
 
 <div>
    <h2>Welcome to the event </h2>
-   <h3>The event will start at <%= @event.time.strftime("%I" "%M") %></h3>
+   <!-- <h3>The event start at <%#= @event.time.strftime("%I") %>:<%#= @event.time.strftime("%M") %></h3> -->
 </div>
 
 <div>
@@ -25,13 +25,13 @@
   <% @ordered_objects.each do |o| %>
     <% if  o.class == Survey %>
       <p>
-        <%= o.user.email %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+        <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
       </p>
 
 
     <% else %>
       <p>
-        <%= o.user.email %>: <%= o.description %>
+        <%= o.user.full_name %>: <%= o.description %>
       </p>
     <% end  %>
   <% end %>
