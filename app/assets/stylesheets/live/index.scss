@@ -1,10 +1,37 @@
-.live-headings{
-	text-align: center;
-	margin: auto;
-}	
+.slide-show{
+	height: 55vh;
+	background-color: $ivory;
+	margin: 0 auto;
+	padding: 2.5em 4em;
+}
 
-.live-components{
-	display:flex;
-	justify-content: space-around;
-	margin-top: 5em;
+.chat-box{
+	background-color: $light-gray;
+	margin: 0 auto;
+	margin-top: 2em;
+	padding: 2.5em 4em;
+	height: 60vh;
+	position: relative;
+	.chat-text{
+		position: absolute;
+		box-shadow: 0 0 1px #999;
+		width: 80%;
+
+	}
+}
+
+.keyboard{
+	position: relative;
+	margin: 0 auto;
+	padding: 2.5em 4em;
+	box-shadow: 0 0 1px #999;
+
+	 button{
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 4em;
+    	width: 7em;
+    	background-color: $green;
+	 }
 }
