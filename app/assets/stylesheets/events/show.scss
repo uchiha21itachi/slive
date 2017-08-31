@@ -1,67 +1,85 @@
-
-
-#slider {
-  position: relative;
-  overflow: hidden;
-  margin: 20px auto 0 auto;
-  border-radius: 4px;
+.event-description,.event-address,.event-date-time{
+  font-family: 'Open sans', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 80%;
+  color: #929292;
+   img{
+    margin-right: 7px;
+    display:inline-block;
+   }
+   i{
+    margin-right: 7px;
+    display:inline-block;
+   }
 }
 
-#slider ul {
+.event-upload-slides{
   position: relative;
-  margin: 0;
-  padding: 0;
-  height: 200px;
-  list-style: none;
-}
-
-#slider ul li {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 500px;
+  font-family: 'Open sans', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0 auto;
+  align-content: center;
+  margin-top: 2em;
+  box-shadow: 0 0 1px #999;
+  padding: 2.5em 4em;
+  background-color: #F8F8F8;
+  color: #929292;
+  width: 80%;
   height: 300px;
-  background: #ccc;
-  text-align: center;
-  line-height: 300px;
+  a{
+    text-decoration: none;
+    margin: 0 auto;
+    margin-top: 5em;
+    color: #929292;
+  }
+  span{
+    a{
+      color: white;
+    }
+    height: 2.3em;
+    width: 9em;
+    padding-top: 5px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: $red;
+    color: white;
+    text-align: center;
+    
+  }
 }
 
-a.control_prev, a.control_next {
-  position: absolute;
-  top: 40%;
-  z-index: 999;
-  display: block;
-  padding: 4% 3%;
-  width: auto;
-  height: auto;
-  background: #2a2a2a;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  opacity: 0.8;
-  cursor: pointer;
+.page-title{
+ display: flex;
+ font-family: 'Open sans', sans-serif;
+ justify-content: space-between;
+ text-align: center;
+  span{
+    font-size:2em;
+  }
 }
+.page-subtitle-flex{
+  font-family: 'Open sans', sans-serif;
+  font-weight: 300;
+  color: #929292;
+  font-size: 21px;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+ font-family: 'Open sans', sans-serif;
+ justify-content: space-between;
+ text-align: center;
+  .participants-subtitle{
+    margin-left: 150px;
+  }
+  .surveys-subtitle{
+    margin-right: 22px;
+  }
 
-a.control_prev:hover, a.control_next:hover {
-  opacity: 1;
-  -webkit-transition: all 0.2s ease;
-}
 
-a.control_prev {
-  border-radius: 0 2px 2px 0;
-}
 
-a.control_next {
-  right: 0;
-  border-radius: 2px 0 0 2px;
-}
-
-.slider_option {
-  position: relative;
-  margin: 10px auto;
-  width: 160px;
-  font-size: 18px;
 }
