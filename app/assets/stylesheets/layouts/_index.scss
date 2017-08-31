@@ -3,3 +3,11 @@
 // @import "dashboard";
 // @import "profile";
 // @import "map";
+
+html, body {
+  height: 100%;
+}
+
+#main-container {
+  min-height: calc(100% - 205px);
+}
