@@ -4,11 +4,9 @@ class LiveController < ApplicationController
     @livemessage = Livemessage.new
     @event = Event.find(params[:event_id])
 
-    @votes = current_user.votes
-    @survey_ids = @votes.map { |v| v.survey_id }
-    Pusher.trigger("event-#{@event.token}", 'message', {
-      message: 'Hello'
-      })
+    @ordered_objects = (@event.surveys.to_a + @event.livemessages.to_a).sort_by{|o| o.created_at}
+
+
   end
 
 
@@ -18,3 +16,6 @@ class LiveController < ApplicationController
 end
  # livemessages:  JSON.generate(@livemessages.pluck(:description)),
       # user_name: JSON.generate(@livemessages.pluck(:user_id))
+ # Pusher.trigger("event-#{@event.token}", 'message', {
+ #      message: 'Hello'
+ #      })

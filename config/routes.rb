@@ -7,10 +7,6 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-
-
-  get "/live/:token", to: "events#show"
-
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
