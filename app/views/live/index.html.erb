@@ -48,6 +48,7 @@
         <div class="text-1">
           <%if o.class == Question %>
              <%= o.user.full_name %>: <%= o.question %>
+             <br>
             <h5> Answers </h5>
             <div id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
