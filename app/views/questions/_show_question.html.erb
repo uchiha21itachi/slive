@@ -1,3 +1,4 @@
+  <%= question.question %>
 <div id="question-<%= question.id %>">
   <% question.answers.each do |a| %>
     <%= a.user.full_name %>: <%= a.description %>
