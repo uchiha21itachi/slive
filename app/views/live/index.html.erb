@@ -47,16 +47,19 @@
       <% @ordered_objects.each do |o| %>
         <div class="text-1">
           <%if o.class == Question %>
-             <%= o.user.full_name %>: <%= o.question %>
-             <br>
-            <h5> Answers </h5>
+            <strong><%= o.user.full_name %>:</strong> <%= o.question %>
+            <hr>
             <div id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
-                <%= a.user.full_name %>: <%= a.description %>
+               <strong> <%= a.user.full_name %>: </strong><%= a.description %>
+                <br>
               <% end %>
             </div>
             <div class="text-1">
-              <%= render "questions/show_question", question: o, answer: Answer.new %>
+              <%= simple_form_for([o, Answer.new], method: :post, remote: :true) do |f| %>
+                <%= f.input :description, label: false, required: false, placeholder: " Answer here"%>
+                <%= f.submit class: "btn3" %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -70,12 +73,12 @@
         <% if  o.class == Survey %>
           <div class="text-2">
              <p>
-                <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+               <strong> <%= o.user.full_name %>: </strong> <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
             </p>
           </div>
        <% elsif o.class == Livemessage %>
           <div class="text-2">
-            <p> <%= o.user.full_name %>: <%= o.description %></p>
+            <p> <strong> <%= o.user.full_name %>: </strong> <%= o.description %></p>
           </div>
         <% end  %>
       <% end %>
@@ -183,7 +186,7 @@
 
 
     channel.bind('question', function(data) {
-        $('.chat-box-1').append("<div class='text-1'>"+data.user+":- "+ data.question_html + "</div>" );
+        $('.chat-box-1').append("<div class='text-1'>"+data.user+": " + data.question + data.question_html + "</div>" );
       })
 
     channel.bind('livemessage', appendLiveMessage);

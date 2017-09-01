@@ -26,6 +26,7 @@ class QuestionsController < ApplicationController
     if @question.save
       respond_to do |format|
         html = render_to_string partial: "show_question", locals: { question: @question, answer: Answer.new }
+        p html
         Pusher.trigger("event-#{@event.token}", 'question', {
           question: @question.question,
           question_html: html,
