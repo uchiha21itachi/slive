@@ -14,7 +14,11 @@
 	border-radius: 0;
   max-height: 30%;
 }
-
+.radio{
+	label{
+		display:block;
+	}
+}
 .chat-box-container-1{
 	width:40%;
 	.chat-box-1{
