@@ -183,8 +183,10 @@
 
     channel.bind('question', function(data) {
         $('.chat-box-1').append("<div class='text-1'>"+data.user+":- "+ data.question_html + "</div>" );
+      })
+
     channel.bind('livemessage', appendLiveMessage);
-    })
+
 
     channel.bind('survey', function(data) {
       $('.chat-box-2').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
