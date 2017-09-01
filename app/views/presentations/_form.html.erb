@@ -1,6 +1,13 @@
-<%= simple_form_for([@event, @presentation]) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :pdf_file %>
-  <%= f.input :pdf_file_cache, as: :hidden %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+	<div class="row page-title"><h2> /Upload your Slides </h2></div>
+</div>
+<div class="container">
+	<div class="row event-new">
+		<%= simple_form_for([@event, @presentation]) do |f| %>
+        <%= f.input :name, required: false, :label => "Name of your presentation" %>
+		<%= f.input :pdf_file %>
+  		<%= f.input :pdf_file_cache, as: :hidden %>
+		<%= f.submit "Upload", class: "createbtn" %>
+		<% end %>
+	</div>
+</div>

@@ -3,25 +3,26 @@
   justify-content: space-between;
 }
 .important-buttons{
-
-      margin-right: 1em;
-      margin-top: 1.7em;
+padding: 1em;
 }
 .background-blue {
-
   background-color: $blue;
-    a{
-     color:white;
-    }
-    .logo{
+
+  a{
+    color:white;
+  }
+  .logo{
       padding:1em;
+   }
+  .menu-icon__line{
+      background-color:white;
+    &:before,
+    &:after {
+      background-color:white;
     }
-    .dropdown{
-      span{
-        background-color:white;
-      }
-    }
+  }  
 }
+
 
 .logo{
   // margin-left: 16%;
@@ -36,7 +37,8 @@
 }
 
 .menu-icon {
-	margin-top: 2em;
+	 padding: 1em;
+    margin-top:5px;
     width: 2.5rem;
     height: 1.5rem;
     display: inline-block;

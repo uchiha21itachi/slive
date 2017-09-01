@@ -12,14 +12,7 @@
 			<div id= "time"> <%= f.input :time, required: false %></div>
 		</div>
 		<%= f.input :description, required: false, as: :text,:input_html => {:rows => 10},:label => "Describe your event" %>
-
-		<div class="submit-event">
-		<div></div>
-		<div class = "button-for-event"><%= f.submit "Create", class: "btn" %></div>
-		</div>
-
-
+		<%= f.submit "Create", class: "createbtn" %>
 		<% end %>
-
 	</div>
 </div>

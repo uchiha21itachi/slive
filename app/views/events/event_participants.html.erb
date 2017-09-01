@@ -1,7 +1,15 @@
-<div>
+<div class="container">
+  <br>
+  <br>
   <h2>Number of participants :  <%= @participants.count %> </h2>
-  <% @participants.each do |p| %>
-    <p> Name :- <%= p.full_name  %> </p>
-    <p> Emal :- <%= p.email %> </p>
-  <% end %>
+  <ul class="list">
+    <% @participants.each do |p| %>
+    <br>
+    <li>
+      <p> <%= p.full_name  %> </p>
+      <p> contact : <%= p.email %></p>
+    </li>
+
+      <% end %>
+  </ul>
 </div>

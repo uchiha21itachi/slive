@@ -1,4 +1,10 @@
 class SurveysController < ApplicationController
+
+  def index
+    @event = Event.find(params[:event_id])
+    @surveys = @event.surveys
+  end
+
   def new
    @survey = Survey.new
    @survey.options.build

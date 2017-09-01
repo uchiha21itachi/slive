@@ -4,6 +4,7 @@ class LiveController < ApplicationController
     @livemessage = Livemessage.new
     @event = Event.find(params[:event_id])
 
+    @question = Question.new
     @ordered_objects = (@event.surveys.to_a + @event.livemessages.to_a + @event.questions.to_a).sort_by{|o| o.created_at}
     
     if @event.presentation != nil

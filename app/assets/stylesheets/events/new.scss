@@ -26,11 +26,13 @@
 	background-color: #F8F8F8;
 	color: #929292;
 	width: 80%;
+	position:relative;
 
 	#new_event,label, input{
 		display:block;
 		width: 100%;
 		border-radius: 0;
+
 	}
 	.time_date{
 		display:flex;
@@ -38,25 +40,16 @@
 			margin-left: 4em;
 		}
 	}
-	.button-flex{
-		display:flex;
-	}
-
-	.submit-event{
-		display:flex;
-        justify-content: space-between;
-        padding:0px;
-        height: 6em;
-   	}
-	
-
-    .btn{
+}
+.createbtn{
+    	position: absolute !important;
+    	right:0 !important;
+    	bottom: 0 !important;
+    	width: 8em !important;
+    	height:3.3em !important;
 	    background-color: $green;
 		color: $white;
 		border-radius: 0 !important;
-	  }  
-    
-	
-}
+}  
 
 

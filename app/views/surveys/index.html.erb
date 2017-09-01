@@ -1,0 +1,11 @@
+<% @surveys.each do |o| %>
+<p>
+  <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+  <%= o.votes.count %>
+</p>
+<% end  %>
+
+<% content_for(:after_js) do %>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<% end %>
