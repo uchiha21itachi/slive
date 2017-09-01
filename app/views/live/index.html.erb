@@ -2,8 +2,10 @@
 <div class="container">
   <div class="row page-title">
     <h2>/ <%= link_to @event.name, event_path(@event) %> </h2>
-    <%= link_to "Make a survey", new_event_survey_path(@event) %>
-    
+    <% if current_user == @event.presenter %>
+      <%= link_to "Make a survey", new_event_survey_path(@event) %>
+    <% end  %>
+
   </div>
 <div class="container">
   <div class="row slide-show">
@@ -45,7 +47,7 @@
       <% @ordered_objects.each do |o| %>
         <div class="text-1">
           <%if o.class == Question %>
-             <%= o.user.full_name %>: <%= o.question %> 
+             <%= o.user.full_name %>: <%= o.question %>
             <h5> Answers </h5>
             <div id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
@@ -95,8 +97,8 @@
 
 
 
-   
-  
+
+
 
 
 
@@ -181,8 +183,10 @@
 
     channel.bind('question', function(data) {
         $('.chat-box-1').append("<div class='text-1'>"+data.user+":- "+ data.question_html + "</div>" );
-    channel.bind('livemessage', appendLiveMessage); 
-    })
+      })
+
+    channel.bind('livemessage', appendLiveMessage);
+
 
     channel.bind('survey', function(data) {
       $('.chat-box-2').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
