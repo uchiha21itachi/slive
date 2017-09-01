@@ -152,7 +152,7 @@
 
       $('.chat-box-2').append(
         "<div class='text-2' data-id='" + data.id + "'>" +
-          "<p>"+data.user+": "+ escapeHtmlEntities(data.message)  + "</p>" +
+          "<p>"+"<strong>"+data.user+"</strong>" +": "+ escapeHtmlEntities(data.message)  + "</p>" +
         "</div>"
       );
       scrollToBottom();
@@ -186,14 +186,14 @@
 
 
     channel.bind('question', function(data) {
-        $('.chat-box-1').append("<div class='text-1'>"+data.user+": " + data.question + data.question_html + "</div>" );
+        $('.chat-box-1').append("<div class='text-1'>"+"<strong>"+data.user+ "</strong>" +": " + data.question + data.question_html + "</div>" );
       })
 
     channel.bind('livemessage', appendLiveMessage);
 
 
     channel.bind('survey', function(data) {
-      $('.chat-box-2').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
+      $('.chat-box-2').append("<p>"+"<strong>"+data.user+ "</strong>"+":- "+ data.survey_html +"</p>" );
 
     })
 

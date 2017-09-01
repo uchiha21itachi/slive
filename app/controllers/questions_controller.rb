@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
       end
     else
       render :new
-    en
+    end
   end
 
   def edit
