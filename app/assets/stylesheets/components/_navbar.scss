@@ -7,9 +7,13 @@ padding: 1em;
 }
 .background-blue {
   background-color: $blue;
+
   a{
     color:white;
   }
+  .logo{
+      padding:1em;
+   }
   .menu-icon__line{
       background-color:white;
     &:before,
@@ -21,7 +25,6 @@ padding: 1em;
 
 
 .logo{
-  padding: 1em;
   // margin-left: 16%;
 }
 
