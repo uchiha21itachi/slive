@@ -187,7 +187,7 @@
 
     channel.bind('question', function(data) {
         $('.chat-box-1').append("<div class='text-1'>"+ "<strong>" +data.user+ "</strong>" +": " + data.question + data.question_html + "</div>" );
-      })
+        })
 
     channel.bind('livemessage', appendLiveMessage);
 
