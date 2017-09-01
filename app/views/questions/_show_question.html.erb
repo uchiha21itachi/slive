@@ -1,12 +1,12 @@
-<%= @question.question %>
-<%= simple_form_for([question, Answer.new], method: :post, remote: :true) do |f| %>
-  <%= f.input :description, label: false, required: false, placeholder: " Answer here"%>
-  <%= f.submit class: "btn3" %>
-<% end %>
-
-<h5> Answers </h5>
 <div id="question-<%= question.id %>">
   <% question.answers.each do |a| %>
     <%= a.user.full_name %>: <%= a.description %>
   <% end %>
 </div>
+
+
+
+<%= simple_form_for([question, Answer.new], method: :post, remote: :true) do |f| %>
+  <%= f.input :description, label: false, required: false, placeholder: " Answer here"%>
+  <%= f.submit class: "btn3" %>
+<% end %>

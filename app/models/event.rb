@@ -15,6 +15,13 @@ class Event < ApplicationRecord
   belongs_to :presenter, class_name: User
 
   def start_at
-    Time.new(date.year, date.month, date.day, time.hour, time.min)
+
+    e = Time.new(date.year, date.month, date.day, time.hour, time.min)
+    date = e.strftime("%d") + "-" + e.strftime("%B") + "-" +  e.strftime("%Y")
+    time = e.strftime("%H") + ":" + e.strftime("%M")
+    e = date + " " + time
+    return e
   end
+
+
 end
