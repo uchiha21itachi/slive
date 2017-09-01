@@ -24,13 +24,16 @@ class QuestionsController < ApplicationController
     @question.user = @user
     @question.event = @event
     if @question.save
-      html = render_to_string partial: "show_question", locals: { question: @question, answer: Answer.new }
-      Pusher.trigger("event-#{@event.token}", 'question', {
+      respond_to do |format|
+        html = render_to_string partial: "show_question", locals: { question: @question, answer: Answer.new }
+        Pusher.trigger("event-#{@event.token}", 'question', {
           question: @question.question,
           question_html: html,
           user: @user.full_name
-      })
-      redirect_to event_live_index_path(@event)
+        })
+        format.html {redirect_to event_live_index_path(@event)}
+        format.js
+      end
     else
       render :new
     end
