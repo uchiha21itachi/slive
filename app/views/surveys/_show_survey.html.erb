@@ -1,8 +1,10 @@
 <h3><%= survey.question %></h3>
 <%= simple_form_for([event,survey,vote], remote: true) do |f| %>
-<%= f.association :option, as: :radio_buttons, collection: survey.options, label_method: :choice %>
+<%= f.association :option, as: :radio_buttons, collection: survey.options, label_method: :choice, required:false %>
 <%= f.button :submit , class: "btn4" %>
+<br>
 <% end %>
+<br>
 
 <% data = survey.options.map(&:as_json)  %>
 
