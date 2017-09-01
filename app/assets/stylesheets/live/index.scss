@@ -12,6 +12,7 @@
 	margin: 0 auto;
 	padding: 2em 3.25em;
 	border-radius: 0;
+  max-height: 30%;
 }
 
 .chat-box-container-1{
@@ -34,7 +35,7 @@
 			padding: 1em 2em;
 		}
 	}
-}	
+}
 .chat-box-container-2{
 	width:60%;
 	.chat-box-2{
@@ -55,7 +56,7 @@
 			padding: 1em 2em;
 		}
 	}
-}		
+}
   .question{
     box-shadow: 0 0 1px #999;
     background-color: #f8f8f8;

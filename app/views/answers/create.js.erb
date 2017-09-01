@@ -1,1 +1,1 @@
-$("#question-<%= @question.id.to_s %>").append("<%= j @answer.user.full_name %> <%= j @answer.description %><br>");
+$("#question-<%= @question.id.to_s %>").append("<strong><%= j @answer.user.full_name %></strong> <%= j @answer.description %><br>");
