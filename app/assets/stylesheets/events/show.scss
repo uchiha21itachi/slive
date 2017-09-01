@@ -5,12 +5,18 @@
   margin: 0 auto;
   margin-top: 2em;
   width: 80%;
-  color: #929292;
+  color: #747474;
+   strong{
+    color: #3A3A3A;
+   }
    img{
+    background-color:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    opacity:1;
     margin-right: 7px;
     display:inline-block;
    }
    i{
+    color: #747474;
     margin-right: 7px;
     display:inline-block;
    }
@@ -72,6 +78,9 @@
  text-align: center;
   span{
     font-size:2em;
+  }
+  a{
+    text-decoration: none;
   }
 }
 .page-subtitle-flex{
