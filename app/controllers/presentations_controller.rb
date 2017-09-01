@@ -22,6 +22,7 @@ class PresentationsController < ApplicationController
     end
   end
 
+
   def show
     @presentation = Presentation.find(params[:id])
   end
