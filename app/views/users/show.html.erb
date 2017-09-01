@@ -14,12 +14,13 @@
   <div class="row">
     <div class="description">
       <p><strong> Name:      </strong> <%= @user.full_name %> </p>
+      <p><strong> Email:  </strong> <%= @user.email %> </p>
       <p><strong> Contact:  </strong> <%= @user.phone_number %> </p>
       <p><strong> Birthday:  </strong> <%= @user.birth_date %> </p>
       <p><strong> Occupation:  </strong>  <%= @user.occupation %> </p>
-      <p><strong> Email:  </strong> <%= @user.email %> </p>
-      <p><strong> Phone Number:  </strong> <%= @user.phone_number %> </p>
+      <div>
+        <%= link_to "Edit your profile ", edit_user_path %>
+      </div>
     </div>
   </div>
- <%= link_to "edit", edit_user_path %>
 </div>

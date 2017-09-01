@@ -13,9 +13,10 @@
         <%= link_to "Questions", event_questions_path(@event), class: "votes-subtitle" %>
       </div>
   </div>
-
   <div class="row page-subtitle-flex">
+    <% if @event.presentation == nil  %>
        <p>add slides to your event</p>
+    <% end %>
   </div>
 </div>
 
@@ -66,7 +67,7 @@
     <%= image_tag("map.png", height: '20', width: '20')%>  <%= @event.address %>
     </div>
     <div class="row event-address">
-      <%= image_tag("address.png", height: '20', width: '20') %> <%= @event.date %>
+      <%= image_tag("address.png", height: '20', width: '20') %> <%= @event.start_at %>
       </div>
       <div class="row event-address"><i class="fa fa-id-badge" aria-hidden="true"></i> <%= @event.token %></div>
   </div>
