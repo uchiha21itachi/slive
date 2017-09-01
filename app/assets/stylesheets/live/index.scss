@@ -1,6 +1,12 @@
 .chatboxes{
 	display:flex;
 }
+
+.headings{
+	h2{
+		margin-left:-3em;
+	}
+}
 .slide-show{
 	background-color: #f8f8f8;
 	margin: 0 auto;
@@ -78,7 +84,7 @@
 			height: 4.5em;
 			border-radius: 0;
 		}
-		.btn-1{
+		.btn-1,.btn3,.btn4{
 			position: absolute;
 			display: inline-block;
 			right:0;

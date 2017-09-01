@@ -8,8 +8,9 @@
      </div>
   <div class="login">
   <% if user_signed_in? %>
-       <div class="important-buttons"><%= link_to "Dashboard",  user_dashboards_path(current_user)%>
-       <%= link_to "Create Event", new_event_path%>
+       <div class="important-buttons">
+       <%= link_to "Dashboard",  user_dashboards_path(current_user)%>  | 
+       <%= link_to "Create Event", new_event_path%> |
      </div>
   <div class="dropdown menu-icon avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
         <span class="menu-icon__line"></span>
