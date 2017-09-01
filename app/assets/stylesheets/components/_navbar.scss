@@ -8,17 +8,19 @@
       margin-top: 1.7em;
 }
 .background-blue {
-
   background-color: $blue;
-    a{
-     color:white;
+  a{
+    color:white;
+  }
+  .menu-icon__line{
+      background-color:white;
+    &:before,
+    &:after {
+      background-color:white;
     }
-    .dropdown{
-      span{
-        background-color:white;
-      }
-    }
+  }  
 }
+
 
 .logo{
   padding: 1em;
