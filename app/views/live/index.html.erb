@@ -43,7 +43,7 @@
     <div class="row chat-box">
      <div class="status"></div>
       <% @ordered_objects.each do |o| %>
-        <% if  o.class == Survey %>
+        <% if o.class == Survey %>
           <div class="text">
              <p>
               <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
@@ -126,7 +126,7 @@
 
     $("#new_livemessage").on("submit", function() {
       setTimeout(function() {
-        $("#livemessage_description").val("");  
+        $("#livemessage_description").val("");
       }, 0);
     });
 
@@ -177,7 +177,7 @@
 
     channel.bind('question', function(data) {
         $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html + "</p></div>" );
-    channel.bind('livemessage', appendLiveMessage); 
+    channel.bind('livemessage', appendLiveMessage);
     })
 
     channel.bind('survey', function(data) {
