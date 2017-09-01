@@ -1,26 +1,53 @@
+.chatboxes{
+	display:flex;
+}
 .slide-show{
 	background-color: #f8f8f8;
 	margin: 0 auto;
-	padding: 2.5em 4em;
+	padding: 2em 3.25em;
 	border-radius: 0;
 }
-.chat-box{
-	padding: 2.5em 4em;
-	margin: 0 auto;
-  	margin-top: 2em;
-  	width: 90%;
-  	max-height: 70vh;
-  	overflow: auto;
-  	border-radius: 0;
-	.text{
-		box-shadow: 0 0 1px #999;
-		background-color: #f8f8f8;
-		width: 100%;
-		margin-bottom: 1em;
-		margin-top: 1em;
-		border-radius: 0;
-		padding: 1.25em 2em;
+
+.chat-box-container-1{
+	width:40%;
+	.chat-box-1{
+		padding: 1em 2em;
+		margin-top: 2em;
+	  	width: 100%;
+	  	max-height: 70vh;
+	  	overflow: auto;
+	  	border-radius: 0;
+			.text-1{
+			box-shadow: 0 0 1px #999;
+			background-color: #f8f8f8;
+			width: 100%;
+			margin-bottom: 1em;
+			margin-top: 1em;
+			border-radius: 0;
+			padding: 1em 2em;
+		}
 	}
+}	
+.chat-box-container-2{
+	width:60%;
+	.chat-box-2{
+		padding: 1em 2em;
+		margin-top: 2em;
+	  	width: 100%;
+	  	max-height: 70vh;
+	  	overflow: auto;
+	  	border-radius: 0;
+		.text-2{
+			box-shadow: 0 0 1px #999;
+			background-color: #f8f8f8;
+			width: 100%;
+			margin-bottom: 1em;
+			margin-top: 1em;
+			border-radius: 0;
+			padding: 1em 2em;
+		}
+	}
+}		
   .question{
     box-shadow: 0 0 1px #999;
     background-color: #f8f8f8;
@@ -30,29 +57,66 @@
     border-radius: 0;
     padding: 1.25em 2em;
   }
+
+
+.keyboards{
+	display:flex;
 }
-.keyboard{
-	.new-message{
-		margin: 0 auto;
-  		margin-top: 2em;
-  		width: 90%;
-  		position: relative;
-  		height: 4em;
-  		border-radius: 0;
+
+.keyboard-container-1{
+	width:40%;
+	.keyboard-1{
+		.new_question{
+			margin: 0 auto;
+	  		margin-top: 2em;
+	  		width: 90%;
+	  		position: relative;
+	  		height: 4em;
+	  		border-radius: 0;
+		}
+		.question-area{
+			height: 4.5em;
+			border-radius: 0;
+		}
+		.btn-1{
+			position: absolute;
+			display: inline-block;
+			right:0;
+			top:0;
+			height:4.5em;
+			width: 8em;
+			background-color:$green;
+			color: white;
+			border-radius: 0;
+		}
 	}
-	.text-area{
-		height: 4.5em;
-		border-radius: 0;
-	}
-	.btn{
-		position: absolute;
-		display: inline-block;
-		right:0;
-		top:0;
-		height:4.5em;
-		width: 10em;
-		background-color:$green;
-		color: white;
-		border-radius: 0;
+}
+
+.keyboard-container-2{
+	width:60%;
+	.keyboard-2{
+		.new-message{
+			margin: 0 auto;
+	  		margin-top: 2em;
+	  		width: 90%;
+	  		position: relative;
+	  		height: 4em;
+	  		border-radius: 0;
+		}
+		.text-area{
+			height: 4.5em;
+			border-radius: 0;
+		}
+		.btn-2{
+			position: absolute;
+			display: inline-block;
+			right:0;
+			top:0;
+			height:4.5em;
+			width: 10em;
+			background-color:$green;
+			color: white;
+			border-radius: 0;
+		}
 	}
 }
