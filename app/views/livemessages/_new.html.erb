@@ -1,4 +1,4 @@
 <%= simple_form_for @livemessage, url: event_livemessage_path(@event), method: :post, remote: true, html: { class: "new-message" } do |f|  %>
       <%= f.input :description, input_html: { class: "text-area" },required: false, placeholder: " Type Here", label: false %>
-      <%= f.submit "Send", class: "btn" %>
+      <%= f.submit "Send", class: "btn-2" %>
 <% end %>

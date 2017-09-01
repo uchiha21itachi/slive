@@ -1,4 +1,10 @@
-<br>
+
+<div class="container">
+  <div class="row page-title">
+    <h2>/ <%= link_to @event.name, event_path(@event) %> </h2>
+    <%= link_to "Make a survey", new_event_survey_path(@event) %>
+    
+  </div>
 <div class="container">
   <div class="row slide-show">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -25,80 +31,73 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row page-title">
-    <h2>/ <%= link_to @event.name, event_path(@event) %> </h2>
-    <%= link_to "Ask the presenter" %>
-    <%= link_to "Make a survey", new_event_survey_path(@event) %>
-    <%= link_to "Ask a Question", new_event_question_path(@event) %>
-  </div>
 
-<div class="wrapper">
-  <div class="container">
-    <div class="row notifications">
-      <div class="chat-join"></div>
-    </div>
+
+<div class="container">
+  <div class="row notifications">
+    <div class="chat-join"></div>
   </div>
-  <div class="container">
-    <div class="row chat-box">
-     <div class="status"></div>
+</div>
+
+<div class="wrapper chatboxes">
+  <div class="container chat-box-container-1">
+    <div class="row chat-box-1">
       <% @ordered_objects.each do |o| %>
-        <% if  o.class == Survey %>
-          <div class="text">
-             <p>
-              <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
-            </p>
-          </div>
-        <% elsif o.class == Question %>
-          <div class="text">
-            <p> <%= o.user.full_name %>: <%= o.question %> </p>
+        <div class="text-1">
+          <%if o.class == Question %>
+             <%= o.user.full_name %>: <%= o.question %> 
             <h5> Answers </h5>
-            <div class= "text" id="question-<%= o.id %>">
+            <div id="question-<%= o.id %>">
               <% o.answers.each do |a| %>
                 <%= a.user.full_name %>: <%= a.description %>
-                <br>
               <% end %>
             </div>
-            <div class="text">
+            <div class="text-1">
               <%= render "questions/show_question", question: o, answer: Answer.new %>
             </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="container chat-box-container-2">
+    <div class="row chat-box-2">
+      <div class="status"></div>
+      <% @ordered_objects.each do |o| %>
+        <% if  o.class == Survey %>
+          <div class="text-2">
+             <p>
+                <%= o.user.full_name %>: <%= render "surveys/show_survey", event: @event, survey: o, vote: Vote.new %>
+            </p>
           </div>
-        <% else %>
-          <div class="text">
+       <% elsif o.class == Livemessage %>
+          <div class="text-2">
             <p> <%= o.user.full_name %>: <%= o.description %></p>
           </div>
         <% end  %>
       <% end %>
     </div>
   </div>
-  <div class="container">
-    <div class="row keyboard">
+</div>
+
+<div class="wrapper keyboards">
+  <div class="container keyboard-container-1">
+    <div class="row keyboard-1">
+      <%= render 'questions/form_for_questions' %>
+    </div>
+  </div>
+   <div class="container keyboard-container-2">
+    <div class="row keyboard-2">
       <%= render 'livemessages/new' %>
     </div>
   </div>
 </div>
 
-<div class="wrapper">
-  <div class="container">
-    <% @ordered_objects.each do |o| %>
-      <div class="question">
-      <%if o.class == Question %>
-        <p> <%= o.user.full_name %>: <%= o.question %> </p>
-        <h5> Answers </h5>
-        <div id="question-<%= o.id %>">
-          <% o.answers.each do |a| %>
-            <%= a.user.full_name %>: <%= a.description %>
-            <br>
-          <% end %>
-        </div>
-        <div class="text">
-          <%= render "questions/show_question", question: o, answer: Answer.new %>
-        </div>
-      <% end %>
-    <% end %>
-    </div>
-  </div>
-</div>
+
+
+   
+  
+
 
 
 <% content_for(:after_js) do %>
@@ -145,8 +144,8 @@
         return;
       }
 
-      $('.chat-box').append(
-        "<div class='text' data-id='" + data.id + "'>" +
+      $('.chat-box-2').append(
+        "<div class='text-2' data-id='" + data.id + "'>" +
           "<p>"+data.user+":- "+ escapeHtmlEntities(data.message)  + "</p>" +
         "</div>"
       );
@@ -154,7 +153,12 @@
     }
 
     function scrollToBottom() {
-      $('.chat-box').animate({ scrollTop: $('.chat-box')[0].scrollHeight });
+      $('.chat-box-2').animate({ scrollTop: $('.chat-box-2')[0].scrollHeight });
+    }
+
+    scrollToBottom();
+    function scrollToBottom() {
+      $('.chat-box-1').animate({ scrollTop: $('.chat-box-1')[0].scrollHeight });
     }
 
     scrollToBottom();
@@ -176,12 +180,12 @@
 
 
     channel.bind('question', function(data) {
-        $('.chat-box').append("<div class='text'><p>"+data.user+":- "+ data.question_html + "</p></div>" );
+        $('.chat-box-1').append("<div class='text-1'>"+data.user+":- "+ data.question_html + "</div>" );
     channel.bind('livemessage', appendLiveMessage); 
     })
 
     channel.bind('survey', function(data) {
-      $('.chat-box').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
+      $('.chat-box-2').append("<p>"+data.user+":- "+ data.survey_html +"</p>" );
 
     })
 
