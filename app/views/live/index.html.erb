@@ -45,8 +45,8 @@
   <div class="container chat-box-container-1">
     <div class="row chat-box-1" id="questions">
       <% @ordered_objects.each do |o| %>
-        <div class="text-1">
-          <%if o.class == Question %>
+        <% if o.class == Question %>
+          <div class="text-1">
             <strong><%= o.user.full_name %>:</strong> <%= o.question %>
             <hr>
             <div id="question-<%= o.id %>">
@@ -61,8 +61,8 @@
                 <%= f.submit class: "btn3" %>
               <% end %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
